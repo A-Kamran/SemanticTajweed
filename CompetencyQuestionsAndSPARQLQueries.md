@@ -20,8 +20,26 @@ WHERE {
   FILTER (?letter = :Baa)  # Replace with any letter (e.g., :Noon)
 }
 ```
-
 ### Competency Question 2:
+**Question: Does every Tajweed rule apply to at least one letter?** 
+
+**SPARQL Query:**
+```
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semantictajweed.com/ontology/>
+
+ASK {
+  FILTER NOT EXISTS {
+    ?rule rdf:type :Rule .
+    FILTER NOT EXISTS {
+      ?ruleOccurrence rdf:type :RuleOccurrence .
+      ?ruleOccurrence :hasRuleType ?rule .
+      ?ruleOccurrence :occursAt ?letter .
+    }
+  }
+}
+```
+### Competency Question 3:
 **Question: What is the articulation point of Letter X?** 
 
 **SPARQL Query:**
@@ -35,7 +53,7 @@ WHERE {
     FILTER (?letter = :Baa)
 }
 ```
-### Competency Question 3:
+### Competency Question 4:
 **Question: How many articulation points are defined for AnatomicalUnit X?** 
 
 **SPARQL Query:**
@@ -98,17 +116,152 @@ WHERE {
 
 
 ### Competency Question 7:
-**Question:**
+**Question: Which letters trigger elongation rules (Medd)?**
 
 **SPARQL Query:**
 ```
-
-
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT ?letter
+WHERE {
+  ?letter rdf:type :NaturalMeddPrimary .
+}
 ```
 ### Competency Question 8:
-**Question:** 
+**Question: What rules are triggered when stopping on Letter X?** 
 
 **SPARQL Query:**
 ```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
+SELECT distinct ?rule
+WHERE {
+  ?ruleOccurrence rdf:type :RuleOccurrence .
+  ?ruleOccurrence :occursAt ?LO .
+  ?ruleOccurrence :hasRuleState :Stopping .
+  ?ruleOccurrence :hasRuleType ?rule.
+  ?LO :involvesLetter ?letter.
+  FILTER (?letter = :Baa)
+}
+```
+### Competency Question :
+**Question: Which letters have strong characteristics?** 
+
+**SPARQL Query:**
+```
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semantictajweed.com/ontology/>
+
+Select distinct * 
+where{
+    ?letter a :Letter;
+  	:hasCharacteristic ?characteristic.
+    ?characteristic :hasCharacteristicType :TheStrongCharacteristics.
+
+}
+```
+
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
 ```
