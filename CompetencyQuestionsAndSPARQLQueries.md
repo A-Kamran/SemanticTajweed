@@ -68,8 +68,9 @@ WHERE {
     FILTER (?area = :Tongue)   
 }
 ```
-### Competency Question 4:
+### Competency Question 5:
 **Question: What are the characteristics of Letter X?** 
+
 **SPARQL Query:**
 ```
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -83,7 +84,7 @@ WHERE {
 }
 ```
 
-### Competency Question 5:
+### Competency Question 6:
 **Question: Which letters belong to Group Y?** 
 **SPARQL Query:**
 ```
@@ -97,7 +98,7 @@ WHERE {
 }
 ```
 
-### Competency Question 6:
+### Competency Question 7:
 **Question:What occurrences of Letter X are pronounced heavy (Tafkheem) or light (Tarqeeq)?** 
 
 **SPARQL Query:**
@@ -115,7 +116,7 @@ WHERE {
 ```
 
 
-### Competency Question 7:
+### Competency Question 8:
 **Question: Which letters trigger elongation rules (Medd)?**
 
 **SPARQL Query:**
@@ -127,7 +128,7 @@ WHERE {
   ?letter rdf:type :NaturalMeddPrimary .
 }
 ```
-### Competency Question 8:
+### Competency Question 9:
 **Question: What rules are triggered when stopping on Letter X?** 
 
 **SPARQL Query:**
@@ -145,7 +146,7 @@ WHERE {
   FILTER (?letter = :Baa)
 }
 ```
-### Competency Question :
+### Competency Question 10 :
 **Question: Which letters have strong characteristics?** 
 
 **SPARQL Query:**
@@ -162,7 +163,7 @@ where{
 }
 ```
 
-### Competency Question :
+### Competency Question 11:
 **Question: ** 
 
 **SPARQL Query:**
