@@ -85,7 +85,7 @@ WHERE {
 ```
 
 ### Competency Question 6:
-Which letters have strong characteristics?** 
+**Question: Which letters have strong characteristics?** 
 
 **SPARQL Query:**
 ```
@@ -115,7 +115,7 @@ WHERE {
 ```
 
 ### Competency Question 8:
-**Question:What occurrences of Letter X are pronounced heavy (Tafkheem) or light (Tarqeeq)?** 
+**Question: What occurrences of Letter X are pronounced heavy (Tafkheem) or light (Tarqeeq)?** 
 
 **SPARQL Query:**
 ```
@@ -163,7 +163,7 @@ WHERE {
 }
 ```
 ### Competency Question 11:
-**Question:What rules are triggered when continuing after Letter X?** 
+**Question: What rules are triggered when continuing after Letter X?** 
 
 **SPARQL Query:**
 ```
@@ -182,7 +182,7 @@ WHERE {
 
 ```
 ### Competency Question 12:
-**Question:What rules depend on the state of recitation (stopping or continuation)?** 
+**Question: What rules depend on the state of recitation (stopping or continuation)?** 
 
 **SPARQL Query:**
 ```
@@ -200,7 +200,7 @@ WHERE {
 ## 2. Data Analytics Competency Questions (Statistical Queries)
 
 ### Competency Question 13:
-**Question:How many instances of Rule X are found in Chapter/Surah Y?** 
+**Question: How many instances of Rule X are found in Chapter/Surah Y?** 
 
 **SPARQL Query:**
 ```
@@ -217,7 +217,7 @@ WHERE {
 
 ```
 ### Competency Question 14:
-**Question:What are all the rules applied in Chapter/Surah Y?** 
+**Question: What are all the rules applied in Chapter/Surah Y?** 
 
 **SPARQL Query:**
 ```
@@ -234,7 +234,7 @@ WHERE {
 
 ```
 ### Competency Question 15:
-**Question:How many occurrences of Tajweed Rule X are there across the Quran?** 
+**Question: How many occurrences of Tajweed Rule X are there across the Quran?** 
 
 **SPARQL Query:**
 ```
@@ -250,7 +250,7 @@ WHERE {
 
 ```
 ### Competency Question 16:
-**Question:Which verses contain the most occurrences of Rule X?** 
+**Question: Which verses contain the most occurrences of Rule X?** 
 
 **SPARQL Query:**
 ```
@@ -270,31 +270,31 @@ LIMIT 1
 
 ```
 ### Competency Question 17:
-**Question: ** 
+**Question: What are the most frequently occurring tajweed rules?** 
 
 **SPARQL Query:**
 ```
 ```
 ### Competency Question 18:
-**Question: ** 
+**Question: What are the least frequently occurring tajweed rules?** 
 
 **SPARQL Query:**
 ```
 ```
-### Competency Question :
-**Question: ** 
+### Competency Question 19:
+**Question: Are there overlapping occurrences of Rule X and Rule Y in the same verse?** 
 
 **SPARQL Query:**
 ```
 ```
-### Competency Question :
-**Question: ** 
+### Competency Question 20:
+**Question: How many instances of Rule X are triggered in StopState or ContinuationState?** 
 
 **SPARQL Query:**
 ```
 ```
-### Competency Question :
-**Question: ** 
+### Competency Question 21:
+**Question: Which letters have a higher occurrence of Ghunnah than Ikhfa?** 
 
 **SPARQL Query:**
 ```
