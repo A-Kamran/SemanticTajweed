@@ -268,7 +268,7 @@ GROUP BY ?verse
 ORDER BY DESC(?count)
 LIMIT 1
 ```
-![image](https://github.com/user-attachments/assets/b2249099-3ab0-48d3-a352-6017b96d9e02)
+![image](https://github.com/user-attachments/assets/361bffb7-c2c1-4b3e-9bde-3f3822fe54eb)
 
 ### Competency Question 17:
 **Question: What are the most frequently occurring tajweed rules?** 
