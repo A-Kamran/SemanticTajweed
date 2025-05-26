@@ -4,7 +4,7 @@
 
 | Initial Name               | Arabic Name (Arabic)         | Description                                                             | Simplified Name                |
 |----------------------------|------------------------------|-------------------------------------------------------------------------|--------------------------------|
-|Alif Wasl|	أَلِف وَصْل|	Silent Alif at the beginning of words, pronounced when continuing but silent when stopping.|	Silent Alif|
+|Alif Wasl (HamzatulwasalRule )|	أَلِف وَصْل|	Silent Alif at the beginning of words, pronounced when continuing but silent when stopping.|	Silent Alif|
 |Laam Al-Qamari|	لَام قَمَرِيَّة|	Clear pronunciation of Laam before Qamari letters (e.g., القمر).|	Clear Laam|
 |Laam Ash-Shamsi|	لَام شَمْسِيَّة|	Silent Laam before Shamsi letters, with Shadda on the next letter (e.g., الشمس).|	Silent Laam|
 |Laam Jalalah|	لَام جَلَالَة|	Heavy (Tafkheem) or light (Tarqeeq) pronunciation of Laam in "Allah" depending on the preceding vowel.|	Laam of Allah|
