@@ -1,10 +1,10 @@
 # SWRL Logical Definitions for Tajweed Rules
 
-This file documents the Tajweed rules and their corresponding SWRL logical encodings. It is intended for researchers, developers, and educators working on computational Tajweed applications.
+This file documents the Tajweed rules and their corresponding SWRL logical encodings, including inferred descriptions when direct matches were not available.
 
 ## 📘 Format
 - **Rule Name**: The named Tajweed rule.
-- **Description**: Explanation of the rule's phonetic or grammatical purpose.
+- **Description**: Explanation of the rule's phonetic or grammatical function.
 - **SWRL Logical Condition**: The logic expression used for automatic detection.
 
 ---
@@ -13,7 +13,7 @@ This file documents the Tajweed rules and their corresponding SWRL logical encod
 
 ### Ghunnah Complete
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal sound with Noon or Meem accompanied by Shadda, pronounced clearly and fully.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -22,7 +22,7 @@ LetterOccurrence(?LOP) ^ followedBy(?LOP, ?LO) ^ GhunnahLetter(?gl) ^ followedBy
 
 ### Ikhfa Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Concealment of Noon Sakinah or Tanween, producing a nasal sound between Idhaar and Idghaam.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -31,7 +31,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, NoDia
 
 ### Ikhfa Rule High Noon
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -40,7 +40,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, Small
 
 ### Tanween Ikhfa Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -49,7 +49,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Ikhfa Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -58,7 +58,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Tanween Ikhfa Rule Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -67,7 +67,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Ikhfa Rule Silent State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -76,7 +76,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Ikhfa Shafawi Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Concealment of Meem Sakinah when followed by Ba, producing a light nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -85,7 +85,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Meem) ^ involvesDiacritic(?LO, NoDia
 
 ### Iqlab Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Conversion of Noon Sakinah or Tanween into Meem before Ba, with complete nasalization.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -94,7 +94,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, Sukun
 
 ### Iqlab Rule Meem
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -103,7 +103,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, Small
 
 ### Tanween Iqlab Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -112,7 +112,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Iqlab Rule Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -121,7 +121,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Iqlab Rule Silent State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -130,7 +130,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Iqlab Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -139,7 +139,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Idgham With Ghunnah Words
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging of Noon Sakinah or Tanween with (ي ن م و) with nasalization.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -148,7 +148,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, ?diac
 
 ### Idghaam With Ghunnah Complete
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal assimilation with Shadda, ensuring a complete nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -157,7 +157,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, ?diac
 
 ### Idghaam With Ghunnah Incomplete
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Partial nasal assimilation without Shadda, producing a lighter nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -166,7 +166,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, ?diac
 
 ### Tanween Idgham With Ghunnah Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging of Noon Sakinah or Tanween with (ي ن م و) with nasalization.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -175,7 +175,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Idgham With Ghunnah Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal assimilation with Shadda, ensuring a complete nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -184,7 +184,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Tanween Idgham With Ghunnah Rule Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal assimilation with Shadda, ensuring a complete nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -193,7 +193,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Idghaam With Ghunnah Complete
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal assimilation with Shadda, ensuring a complete nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -202,7 +202,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Idghaam With Ghunnah Incomplete
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Partial nasal assimilation without Shadda, producing a lighter nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -211,7 +211,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Idgham With Ghunnah Rule Silent State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal assimilation with Shadda, ensuring a complete nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -220,7 +220,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Idgham Without Ghunnah Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -229,7 +229,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, ?diac
 
 ### Tanween Idgham Without Ghunnah Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -238,7 +238,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Idgham Without Ghunnah Rule Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -247,7 +247,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Idgham Without Ghunnah Rule Silent State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -256,7 +256,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Idgham Shafawi Rule
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging of Meem Sakinah with Ba, producing a nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -265,7 +265,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Meem) ^ involvesDiacritic(?LO, ?diac
 
 ### Qalqalah
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Echoing sound produced with Sukoon on Qalqalah letters (ق ط ب ج د), creating a bouncing effect.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -274,7 +274,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 
 ### Qalqalah No Diacritic
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -283,7 +283,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 
 ### Lesser Qalqalah
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Weaker echoing sound compared to Greater Qalqalah, usually in the middle of a word.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -292,7 +292,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 
 ### Greater Qalqalah
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Strong echoing sound on Qalqalah letters at the end of a word or with a stopping pause.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -301,7 +301,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 
 ### Qalqalah Stopping
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Echoing sound produced with Sukoon on Qalqalah letters (ق ط ب ج د), creating a bouncing effect.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -310,7 +310,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Hamzatul Wasl
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Silent Alif at the beginning of words, pronounced when continuing but silent when stopping.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -319,7 +319,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ swrlx:makeOWLThing(?R, ?
 
 ### Medd Alif1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Elongation of Alif vowel sound by two Harakaat when preceded by Fatha.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -328,7 +328,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Alif Medd Dagger
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Short elongation with a small Alif symbol above certain letters, pronounced for two Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -337,7 +337,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd Wow1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Elongation of Wow vowel sound by two Harakaat when preceded by Damma.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -346,7 +346,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd Wow Small Wow
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Short elongation with a small Wow symbol.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -355,7 +355,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, W
 
 ### Medd Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Elongation of Yaa vowel sound by two Harakaat when preceded by Kasra.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -364,7 +364,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd Yaa1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Elongation of Yaa vowel sound by two Harakaat when preceded by Kasra.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -373,7 +373,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd Yaa Small Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Short elongation of Yaa with a small Yaa symbol.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -382,7 +382,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, A
 
 ### Medd Yaa Small High Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Short elongation of Yaa with a small high Yaa symbol.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -391,7 +391,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallHighYaa) ^ involvesLetter(?L
 
 ### Medd Munfasil Primary
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of separated elongation, pronounced for 2 to 5 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -400,7 +400,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Primary Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of separated elongation, pronounced for 2 to 5 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -409,7 +409,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Primary Silent1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of separated elongation, pronounced for 2 to 5 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -418,7 +418,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Derived
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Separated elongation between two words, when one ends with a vowel and the next begins with Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -427,7 +427,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Derived Harf Nida Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Separated elongation between two words, when one ends with a vowel and the next begins with Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -436,7 +436,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Derived Harf Nida Round Haa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Separated elongation between two words, when one ends with a vowel and the next begins with Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -445,7 +445,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Derived Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Separated elongation between two words, when one ends with a vowel and the next begins with Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -454,7 +454,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Munfasil Derived Silent1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Separated elongation between two words, when one ends with a vowel and the next begins with Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -463,7 +463,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Muttasil Primary
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of joined elongation, pronounced for 4 to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -472,7 +472,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd Muttasil Primary
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of joined elongation, pronounced for 4 to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -481,7 +481,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Muttasil Primary Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of joined elongation, pronounced for 4 to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -490,7 +490,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Muttasil Derived
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Joined elongation within a single word when a vowel is followed by Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -499,7 +499,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Muttasil Derived Dammatain
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Joined elongation within a single word when a vowel is followed by Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -508,7 +508,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Muttasil Silent Alif Zero
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Joined elongation within a single word when a vowel is followed by Hamza.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -517,7 +517,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOH) ^ involvesLetter(?LOH, Alif) ^ inv
 
 ### Medd Laazim Kalmi MK
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Mandatory elongation with Sukoon at the end of a word, pronounced for 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -526,7 +526,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Laazim Kalmi M
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Mandatory elongation due to Sukoon in the middle of a word, pronounced for 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -535,7 +535,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Laazim Kalmi MSilent Laam
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Mandatory elongation due to Sukoon in the middle of a word, pronounced for 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -544,7 +544,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Al Arid Sukoon
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Temporary elongation when stopping on a word ending with Sukoon, ranging from 2 to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -553,7 +553,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Al Arid Sukoon Derived
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Temporary elongation when stopping on a word ending with Sukoon, ranging from 2 to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -562,7 +562,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Al Ewad
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Elongation of Tanween Fatha at the end of a verse when stopping, replacing it with Alif sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -571,7 +571,7 @@ followedBy(?LO, ?LOF) ^ involvesDiacritic(?LO, Fathatain) ^ LetterOccurrence(?LO
 
 ### Medd Al Ewad Hamza
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Elongation of Tanween Fatha at the end of a verse when stopping, replacing it with Alif sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -580,7 +580,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, Fathatain) ^ involvesLetter(?LO, 
 
 ### Medd As Sila Small Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Short elongation with a small Yaa symbol for the pronoun Ha.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -589,7 +589,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, R
 
 ### Medd As Sila Small Wow
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Short elongation with a small Wow symbol for the pronoun Ha.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -598,7 +598,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, R
 
 ### Medd As Sila Yaa Kubra
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Extended elongation with a small Yaa symbol, pronounced up to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -607,7 +607,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, R
 
 ### Medd As Sila Wow Kubra
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Extended elongation with a small Wow symbol, pronounced up to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -616,7 +616,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, R
 
 ### Leen Wow
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -625,7 +625,7 @@ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Leen Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -634,7 +634,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p)  ^ Letter(?p) ^ involvesDiacriti
 
 ### Medd Wow Leen
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Soft elongation of Wow when preceded by Fatha and followed by Sukoon.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -643,7 +643,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd Yaa Leen
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Soft elongation of Yaa when preceded by Fatha and followed by Sukoon.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -652,7 +652,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Medd As Sila Yaa Kubra Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Extended elongation with a small Yaa symbol, pronounced up to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -661,7 +661,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Laam Ash Shamsi
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Silent Laam before Shamsi letters, with Shadda on the next letter (e.g., الشمس).
 
 **SWRL Logical Condition**:
 ```swrl
@@ -670,7 +670,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ followedBy(?LO, ?LOF) ^ 
 
 ### Laam Ash Shamsi Silent Laam
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Silent Laam before Shamsi letters, with Shadda on the next letter (e.g., الشمس).
 
 **SWRL Logical Condition**:
 ```swrl
@@ -679,7 +679,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Laam) ^ followedBy(?LO, ?LOF) ^ invo
 
 ### Laam Al Qamari
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Clear pronunciation of Laam before Qamari letters (e.g., القمر).
 
 **SWRL Logical Condition**:
 ```swrl
@@ -688,7 +688,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ followedBy(?LO, ?LOF) ^ 
 
 ### Nabr Wow Shadd
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -697,7 +697,7 @@ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ involvesDiacritic(?LOF, Shadda) 
 
 ### Nabr Yaa Shadd
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -706,7 +706,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Nabr Medd
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: General elongation rule for Alif, Wow, and Yaa when they are preceded by Fatha, Damma, and Kasra respectively.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -715,7 +715,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Nabr Stop Shadd
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -724,7 +724,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, Shadda) ^ involvesLetter(?LO, ?L)
 
 ### Nabr Hamza Sukun
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -733,7 +733,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ HamzaLetter(?p) ^ involvesDiac
 
 ### Tafkheem Highest
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Strongest form of heaviness, usually with heavy letters in prominent positions.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -742,7 +742,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 
 ### Tafkheem Middle
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Medium level of heaviness depending on the surrounding letters.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -751,7 +751,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 
 ### Tafkheem Lowest
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Weakest form of heaviness in certain phonetic contexts.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -760,7 +760,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 
 ### Tafkheem Alif
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heaviness in Alif pronunciation when preceded by certain letters or sounds.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -769,7 +769,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 
 ### Tarqeeq Alif
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Alif in certain contexts.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -778,7 +778,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTarqeeqLetter(?p) ^ f
 
 ### Tafkheem Alif1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heaviness in Alif pronunciation when preceded by certain letters or sounds.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -787,7 +787,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 
 ### Tarqeeq Alif1
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Alif in certain contexts.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -796,7 +796,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTarqeeqLetter(?p) ^ f
 
 ### Tanween Idgham Without Ghunnah Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -805,7 +805,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Idghaam Mutajanisaan
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Assimilation of letters with similar articulation points but different characteristics.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -814,7 +814,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?B) ^ involvesDiacritic(?LOB, NoDi
 
 ### Idghaam Mutaqaribaan Laam
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Assimilation of letters with closely related articulation points.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -823,7 +823,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, Laam) ^ involvesDiacritic(?LOB, No
 
 ### Idghaam Mutaqaribaan Qaaf
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Assimilation of letters with closely related articulation points.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -832,7 +832,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, Qaaf) ^ involvesDiacritic(?LOB, No
 
 ### Ghunnah Complete Madd
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal sound with Noon or Meem accompanied by Shadda, pronounced clearly and fully.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -841,7 +841,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Ghunnah Complete Madd Dammatain
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Full nasal sound with Noon or Meem accompanied by Shadda, pronounced clearly and fully.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -850,7 +850,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Laazim Huroof EMuqata’aat
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -859,7 +859,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ SixHarakahLetter(?L) ^ involve
 
 ### Medd Laazim Huroof EMuqata’aat Ayah2
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -868,7 +868,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ SixHarakahLetter(?L) ^ involve
 
 ### Medd Laazim Huroof EMuqata’aat2
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: (Description not found)
 
 **SWRL Logical Condition**:
 ```swrl
@@ -877,7 +877,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ TwoHarakahLetter(?L) ^ involve
 
 ### Idgham Shafawi Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Merging of Meem Sakinah with Ba, producing a nasal sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -886,7 +886,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Medd Laazim Kalmi MDerived
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Mandatory elongation due to Sukoon in the middle of a word, pronounced for 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -895,7 +895,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Muttasil Rule State
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Primary form of joined elongation, pronounced for 4 to 6 Harakaat.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -904,7 +904,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Tafkheem Raa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -913,7 +913,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, ?d) ^ 
 
 ### Tafkheem Raa Sukun
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -922,7 +922,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, Sukun)
 
 ### Tafkheem Raa Stopping
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -931,7 +931,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, ?diac)
 
 ### Tafkheem Raa Alif Wasl
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heaviness in Alif pronunciation when preceded by certain letters or sounds.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -940,7 +940,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, Sukun)
 
 ### Tafkheem Raa Tafkheem Letter
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -949,7 +949,7 @@ LetterOccurrence(?LO) ^ followedBy(?LOF, ?LO) ^ involvesDiacritic(?LOF, Kasra) ^
 
 ### Tarqeeq Raa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Raa when preceded or followed by a Kasra sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -958,7 +958,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, ?d) ^ 
 
 ### Tarqeeq Raa Sukun
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Raa when preceded or followed by a Kasra sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -967,7 +967,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, Sukun)
 
 ### Tarqeeq Raa Stopping
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Raa when preceded or followed by a Kasra sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -976,7 +976,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, ?diac)
 
 ### Tarqeeq Raa Stopping Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Raa when preceded or followed by a Kasra sound.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -985,7 +985,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Raa) ^ involvesDiacritic(?LO, ?diac)
 
 ### Laam Jalalah
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy (Tafkheem) or light (Tarqeeq) pronunciation of Laam in "Allah" depending on the preceding vowel.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -994,7 +994,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Laam) ^ followedBy(?LO, ?LOF) ^ invo
 
 ### Laam Jalalah Meem
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy (Tafkheem) or light (Tarqeeq) pronunciation of Laam in "Allah" depending on the preceding vowel.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1003,7 +1003,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ followedBy(?LOB, ?LOP)  ^ in
 
 ### Tafkheem Laam
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1012,7 +1012,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ involvesDiacritic(?LOB, ?dia
 
 ### Tafkheem Laam Meem
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1021,7 +1021,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ involvesDiacritic(?LOB, ?dia
 
 ### Tafkheem Laam Wow
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1030,7 +1030,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ involvesDiacritic(?LOB, ?dia
 
 ### Tafkheem Laam Silent
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Medium level of heaviness depending on the surrounding letters.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1039,7 +1039,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ involvesDiacritic(?LOB, ?dia
 
 ### Tafkheem Laam Wow M
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Heavy pronunciation of Raa depending on the preceding and following vowels.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1048,7 +1048,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ involvesDiacritic(?LOB, ?dia
 
 ### Tarqeeq Laam Silent Yaa
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Laam depending on context.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1057,7 +1057,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?L) ^ involvesDiacritic(?LOB, Kasr
 
 ### Tarqeeq Laam Kasra
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Laam depending on context.
 
 **SWRL Logical Condition**:
 ```swrl
@@ -1066,7 +1066,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Laam) ^ involvesDiacritic(?LO, Kasra
 
 ### Tarqeeq Laam
 
-**Description**: _(To be added: describe the Tajweed rule in plain language.)_
+**Description**: Light pronunciation of Laam depending on context.
 
 **SWRL Logical Condition**:
 ```swrl
