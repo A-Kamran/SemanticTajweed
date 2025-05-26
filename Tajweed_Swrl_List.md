@@ -31,7 +31,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, NoDia
 
 ### Ikhfa Rule High Noon
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -40,7 +40,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, Small
 
 ### Tanween Ikhfa Rule
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -49,7 +49,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Ikhfa Rule State
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -58,7 +58,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 
 ### Tanween Ikhfa Rule Silent
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -67,7 +67,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Ikhfa Rule Silent State
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -94,7 +94,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, Sukun
 
 ### Iqlab Rule Meem
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -103,7 +103,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, Small
 
 ### Tanween Iqlab Rule
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -112,7 +112,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Tanween Iqlab Rule Silent
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -121,7 +121,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 
 ### Iqlab Rule Silent State
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -130,7 +130,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Iqlab Rule State
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -274,7 +274,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 
 ### Qalqalah No Diacritic
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -616,7 +616,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, R
 
 ### Leen Wow
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -625,7 +625,7 @@ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ LetterOccurrence(?LOF) ^ involve
 
 ### Leen Yaa
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -688,7 +688,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ followedBy(?LO, ?LOF) ^ 
 
 ### Nabr Wow Shadd
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -697,7 +697,7 @@ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ involvesDiacritic(?LOF, Shadda) 
 
 ### Nabr Yaa Shadd
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -715,7 +715,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Nabr Stop Shadd
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -724,7 +724,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, Shadda) ^ involvesLetter(?LO, ?L)
 
 ### Nabr Hamza Sukun
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -850,7 +850,7 @@ RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ hasRuleType(?
 
 ### Medd Laazim Huroof EMuqata’aat
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -859,7 +859,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ SixHarakahLetter(?L) ^ involve
 
 ### Medd Laazim Huroof EMuqata’aat Ayah2
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
@@ -868,7 +868,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ SixHarakahLetter(?L) ^ involve
 
 ### Medd Laazim Huroof EMuqata’aat2
 
-**Description**: (Description not found)
+**Description**: 
 
 **SWRL Logical Condition**:
 ```swrl
