@@ -4,7 +4,7 @@ This file documents the Tajweed rules and their corresponding SWRL logical encod
 
 ## 📘 Format
 - **Rule Name**: The named Tajweed rule.
-- **Description**: Explanation of the rule's phonetic or grammatical purpose.
+- **Description/Definition**: Explanation of the rule's phonetic or grammatical purpose.
 - **SWRL Logical Condition**: The logic expression used for automatic detection.
 
 ---
@@ -65,7 +65,65 @@ occursAt(?R, ?LO) ^
 hasRuleType(?R, Ghunnah-Complete)
 ```
 
+###  Ghunnah After Medd (Ghunnah-Complete after a Natural Madd)
 
+**Description**: This rule identifies the occurrence of complete Ghunnah that follows a Natural Medd (Primary elongation), when the Ghunnah letter (Meem or Noon) with a Shaddah and basic harakah (Fatha, Damma, or Kasra) appears after the Madd. This captures the recitation pattern where elongation is followed by nasalization.
+
+**Applicable Scenario**: 
+- Start with an occurrence of a Natural Madd rule at letter ?LO.
+- Traverse two positions forward: ?LO → ?LOH → ?LOF.
+- At ?LOF, confirm the letter is a Ghunnah letter (Noon or Meem).
+- Ensure ?LOF has both:
+  - Shaddah (gemination mark),
+  - A Basic Harakah (vowel mark like Fatha, Damma, Kasra).
+- Confirm all involved letters are in the same word.
+
+```swrl
+RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ 
+hasRuleType(?RO, ?R) ^ NaturalMeddPrimary(?R) ^ 
+followedBy(?LO, ?LOH) ^ followedBy(?LOH, ?LOF) ^ 
+GhunnahLetter(?gl) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?gl) ^ 
+involvesDiacritic(?LOF, Shadda) ^ involvesDiacritic(?LOF, ?h) ^ BasicHarakaat(?h) ^ 
+isPartOfWord(?LO, ?w1) ^ isPartOfWord(?LOF, ?w1) ^ 
+swrlx:makeOWLThing(?RN, ?LO, ?LOF) -> 
+RuleOccurrence(?RN) ^ occursAt(?RN, ?LOF) ^ hasRuleType(?RN, Ghunnah-Complete)
+
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar">إِنَّا أَنزَلْنَاهُ </span>  — Noon with Shaddah (Ghunnah), after a Madd on Alif in the same word.
+
+###  Ghunnah After Medd with Dammatain (Ghunnah-Complete with Double Dammah)
+
+**Description**:This rule identifies the occurrence of complete Ghunnah that follows a Natural Medd, where the Ghunnah letter (Noon or Meem) has both:
+   - A Shaddah (gemination),
+   - A Dammatain (double Dammah, indicating Tanween).
+
+This pattern signals that nasalization (Ghunnah) should be applied following an elongated vowel sound, often occurring in stopping or intonation-heavy parts of recitation.
+
+**Applicable Scenario**: 
+- A Natural Medd occurs at ?LO.
+- Two letters after (?LOF), a Ghunnah letter (Noon/Meem) appears.
+- This Ghunnah letter carries both:
+   - A Shaddah,
+   - A Dammatain (a type of Tanween).
+- All letters involved are in the same word.
+
+```swrl
+RuleOccurrence(?RO) ^ occursAt(?RO, ?LO) ^ LetterOccurrence(?LO) ^ 
+hasRuleType(?RO, ?R) ^ NaturalMeddPrimary(?R) ^ 
+followedBy(?LO, ?LOH) ^ followedBy(?LOH, ?LOF) ^ 
+GhunnahLetter(?gl) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?gl) ^ 
+involvesDiacritic(?LOF, Shadda) ^ involvesDiacritic(?LOF, Dammatain) ^ 
+isPartOfWord(?LO, ?w1) ^ isPartOfWord(?LOF, ?w1) ^ 
+swrlx:makeOWLThing(?RN, ?LO, ?LOF) -> 
+RuleOccurrence(?RN) ^ occursAt(?RN, ?LOF) ^ hasRuleType(?RN, Ghunnah-Complete)
+
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar">سَمِيعٌۭ عَلِيمٌۭ </span>  — A Noon with Shaddah and Dammatain after a Madd, indicating a strong nasalization at the end of the word.
+  
 ### Idghām (Assimilation)
 
 **Definition:**  
@@ -498,8 +556,8 @@ hasRuleState(?R, Continuation)
 The two letters must come from the same articulation point but may differ in strength, airflow, or other ṣifāt.
 Common pairs include: 
 - <span dir="rtl" lang="ar"> ت with ط </span> 
--  <span dir="rtl" lang="ar"> د with ت </span>  
--   <span dir="rtl" lang="ar"> ذ with ظ </span>  
+- <span dir="rtl" lang="ar"> د with ت </span>  
+- <span dir="rtl" lang="ar"> ذ with ظ </span>  
 
 **Applicable Scenario**: 
 - The first letter must be sākin (with sukoon or implied sukoon).
@@ -522,9 +580,37 @@ hasRuleType(?R, Idghaam-Mutajanisaan)
 
 **Examples:**
 - <span dir="rtl" lang="ar">قَد تَّبَيَّنَ — d merges into t → pronounced: قَتَّبَيَّنَ </span>  
-- <span dir="rtl" lang="ar">إِذ ظَلَمُوا → dh merges into zh → pronounced: إِظَّلَمُوا </span>  —
+- <span dir="rtl" lang="ar">إِذ ظَلَمُوا → dh merges into zh → pronounced: إِظَّلَمُوا </span>  
 
- 
+###  Idghām Al-Mutaqāribayn (إِدْغَام الْمُتَقَارِبَيْن)
+
+**Description**: Idghām Al-Mutaqāribayn occurs when two consecutive letters have close articulation points (makhārij) and similar characteristics (ṣifāt). In this rule, the first letter is sākin (has no vowel) and the second is mutaḥarrik (has a vowel). The first letter is merged into the second, often resulting in a geminated (shaddah) pronunciation of the second letter. "Idghām" means merging, and "Mutaqāribayn" refers to two letters that are close (in articulation and characteristics).
+
+**Articulatory Basis:** 
+- The first letter must be sākin.
+- The second letter must be mutaḥarrik.
+- Letters must be adjacent.
+- Occurs within or across words.
+
+Letter pairs include: 
+- <span dir="rtl" lang="ar"> ق with ك (Qaaf + Kaaf) </span> 
+- <span dir="rtl" lang="ar"> ل with ر (Laam + Raa) </span>
+
+- These pairs are close in articulation:
+    Qaaf and Kaaf are both back-of-tongue letters.
+    Laam and Raa are both front-of-tongue letters.
+
+```swrl
+LetterOccurrence(?LOB) ^ involvesLetter(?LOB, Laam) ^ involvesDiacritic(?LOB, NoDiacritic) ^ followedBy(?LOB, ?LO) ^ involvesLetter(?LO, Raa) ^ isCloseTo(Laam, Raa) ^ isPartOfWord(?LOB, ?w1) ^ isPartOfWord(?LO, ?w2) ^ wordIndex(?w1, ?index1) ^ wordIndex(?w2, ?index2) ^ swrlb:greaterThan(?index2, ?index1) ^ swrlx:makeOWLThing(?R, ?LOB) -> RuleOccurrence(?R) ^ occursAt(?R, ?LOB) ^ hasRuleType(?R, Idghaam-Mutaqaribaan)
+```
+
+```swrl
+LetterOccurrence(?LOB) ^ involvesLetter(?LOB, Qaaf) ^ involvesDiacritic(?LOB, NoDiacritic) ^ followedBy(?LOB, ?LO) ^ involvesLetter(?LO, Kaaf) ^ isCloseTo(Qaaf, Kaaf)  ^ swrlx:makeOWLThing(?R, ?LOB) -> RuleOccurrence(?R) ^ occursAt(?R, ?LOB) ^ hasRuleType(?R, Idghaam-Mutaqaribaan)
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar"> اِرْكَبْ مَعَنَا → ب merges into م → pronounced: اِرْكَمَّعَنَا </span>  
+
 ### Idghaam Ash-Shafawi (إدغام شفوي)
 
 **Definition:**  Idghām Shafawī is a Tajweed rule that involves the merging of Meem Sākinah (مْ) into another Meem (م) that directly follows it. The result is a nasalized, merged sound (ghunnah), articulated using the lips — hence the term "shafawī" which means "labial."
@@ -564,24 +650,134 @@ hasRuleType(?R, IdghaamAshShafawi)
 - <span dir="rtl" lang="ar">فَهُمْ مِسْتَبْشِرُونَ</span> → The Meem in فَهُمْ (which is Sākinah) merges into the Meem in مِسْتَبْشِرُونَ:
 
 
-###  Rule
+###  Ikhfāʾ (الإخفاء)
 
-**Description**:
+**Definition**: Ikhfāʾ literally means to hide. In Tajweed, it refers to partially hiding the pronunciation of Noon Sakinah (نْ) or Tanween (ــًــٍــٌ) when followed by one of 15 specific letters. The sound is produced from a position between Iẓhār (clear) and Idghām (merged)—accompanied by a light nasalization (ghunnah) for about two counts.
+The 15 letters that trigger Ikhfāʾ when they follow Noon Sakinah or Tanween are:  <span dir="rtl" lang="ar"> ت ث ج د ذ ز س ش ص ض ط ظ ف ق ك </span>
+These are collectively remembered using the mnemonic:
+<span dir="rtl" lang="ar">     "صف ذا ثنا كم جاد شخص قد سما دم طيب زد في تقى ضع ظالما"</span> 
 
-**Tajweed Significance**: 
+###  Variants and Logic Conditions
+
+### 1. Standard Ikhfāʾ Rule (Noon Sakinah)
+**Description**: Detects Ikhfāʾ when Noon Sakinah is followed by any of the 15 Ikhfāʾ letters.
 
 ```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, Noon) ^ 
+involvesDiacritic(?LO, NoDiacritic) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?L) ^ 
+IkhfaLetter(?L) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) 
+-> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Ikhfa)
 
 ```
 
 **Examples:**
-- <span dir="rtl" lang="ar"> </span>  —
+- <span dir="rtl" lang="ar"> مِنْكُمْ </span>  — Noon is lightly hidden with nasalization before the Kaf
 
+###  2. Ikhfāʾ with Small High Noon
+
+**Description**: Identifies Ikhfāʾ in contexts where Noon is indicated with Small High Noon diacritic, typically seen in Uthmani script.
+
+```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, Noon) ^ 
+involvesDiacritic(?LO, SmallHighNoon) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?L) ^ 
+IkhfaLetter(?L) ^ 
+hasLetterPosition(?LO, ?P) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) 
+-> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Ikhfa)
+
+```
+
+###  3. Tanween Ikhfa Rule (Ikhfāʾ of Tanween)
+
+**Description**:Detects Ikhfāʾ after Tanween, when followed by any of the 15 Ikhfāʾ letters.
+
+```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, ?p) ^ 
+Letter(?p) ^ 
+involvesDiacritic(?LO, ?T) ^ 
+Tanween(?T) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?L) ^ 
+IkhfaLetter(?L) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) 
+-> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Ikhfa)
+
+```
+
+###  4. Tanween Ikhfāʾ Silent (Skip letter before rule)
+
+**Description**:Covers Ikhfāʾ cases where a silent letter exists between the Tanween and the actual Ikhfāʾ letter.
+
+```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, ?p) ^ 
+Letter(?p) ^ 
+involvesDiacritic(?LO, ?T) ^ 
+Tanween(?T) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?S) ^ 
+SilentLetter(?S) ^ 
+followedBy(?LOF, ?LOH) ^ 
+LetterOccurrence(?LOH) ^ 
+involvesLetter(?LOH, ?L) ^ 
+IkhfaLetter(?L) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) 
+-> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Ikhfa)
+
+```
+###   5. Ikhfāʾ Rule State (End of Ayah)
+
+**Description**: Annotates the state of the rule when it occurs at the end of an ayah, to indicate recitation continuation is expected, not a full stop.
+
+```swrl
+LetterOccurrence(?LO) ^ 
+involvesPauseMarker(?LO, endOfAyah) ^ 
+RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ 
+hasRuleType(?R, Ikhfa) ^ 
+swrlx:makeOWLThing(?R, ?LO) 
+-> hasRuleState(?R, Continuation)
+
+```
+###  6. Ikhfāʾ Rule Silent State
+
+**Description**:Similar to above, but also includes silent letter detection before the pause, enabling proper tagging for real recitation contexts.
+
+```swrl
+LetterOccurrence(?LO) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?S) ^ 
+SilentLetter(?S) ^ 
+involvesPauseMarker(?LOF, endOfAyah) ^ 
+RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ 
+hasRuleType(?R, Ikhfa) ^ 
+swrlx:makeOWLThing(?R, ?LO) 
+-> hasRuleState(?R, Continuation)
+
+```
 ###  Rule
 
 **Description**:
 
-**Tajweed Significance**: 
+```swrl
+```
+
+
+###  Rule
+
+**Description**:
 
 ```swrl
 ```
