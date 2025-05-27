@@ -442,6 +442,29 @@ hasRuleType(?R, IdghaamWithoutGhunnah)
 
 **Interpretation:** Even when a silent separator exists between the Tanween and the Idghaam target letter, the merging process can still occur without nasalization, which this rule captures.
 
+###  Idghām Without Ghunnah – Continuation State at End of Ayah
+
+**Description**:This rule identifies instances of Idghām Without Ghunnah where the Noon Sākinah or Tanween merges into ر (Raa') or ل (Laam) without nasalization, and this merging continues even at the end of the ayah, i.e., there is no stopping or pause in recitation.
+This rule specifically detects whether Idghām Without Ghunnah applies despite the occurrence of an end-of-ayah marker, indicating that the recitation is intended to continue smoothly rather than pause.
+
+Key Notes:
+- This rule refines the application of Idghām Without Ghunnah in real recitation contexts, by accounting for pausal vs non-pausal intentions.
+- It is important for reciters who wish to apply correct Tajweed even when not pausing at the end of a verse.
+
+
+```swrl
+LetterOccurrence(?LO) ^ 
+involvesPauseMarker(?LO, endOfAyah) ^ 
+RuleOccurrence(?R) ^ 
+occursAt(?R, ?LO) ^ 
+hasRuleType(?R, IdghaamWithoutGhunnah) ^  
+swrlx:makeOWLThing(?R, ?LO) 
+-> hasRuleState(?R, Continuation)
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar"> </span>  —
+
 ###  Idghaam Without Ghunnah – Rule State (Continuation after Silent Letter & End of Ayah)
 
 **Description**: This rule determines the state of an existing Idghaam Without Ghunnah occurrence when it is followed by a Silent Letter, and a Pause Marker (such as the end of an Ayah). In this context, the rule state is inferred as "Continuation", meaning that although the recitation pauses (e.g., due to the end of a verse), the Idghaam rule logically holds as a structural feature of the text, even if not recited fully
@@ -465,6 +488,42 @@ hasRuleState(?R, Continuation)
 - <span dir="rtl" lang="ar"> </span>  —
 
 **Interpretation:** This rule ensures your system properly classifies Idghaam Without Ghunnah as logically applicable even when not verbally completed due to a pause in recitation. This is crucial for knowledge representation, where rule validity and phonetic realization may diverge.
+
+
+###  Idghām Al-Mutajānissayn (Idghām of Similar Letters)
+
+**Description**:This rule identifies Idghām Al-Mutajānissayn—a form of assimilation that occurs when two adjacent letters share the same point of articulation (makhraj), but differ slightly in characteristics (ṣifāt). In this case, the first letter is non-voweled (sākin) and the second follows it immediately and is similar in articulation.  Upon recitation, the first letter is assimilated into the second, and only the second is pronounced—with a shaddah (gemination) if applicable.
+
+**Articulatory Basis:** 
+The two letters must come from the same articulation point but may differ in strength, airflow, or other ṣifāt.
+Common pairs include: 
+- <span dir="rtl" lang="ar"> ت with ط </span> 
+-  <span dir="rtl" lang="ar"> د with ت </span>  
+-   <span dir="rtl" lang="ar"> ذ with ظ </span>  
+
+**Applicable Scenario**: 
+- The first letter must be sākin (with sukoon or implied sukoon).
+- The second letter must be mutaharrik (with a vowel).
+- The letters must be adjacent, either within or across words.
+  
+```swrl
+LetterOccurrence(?LOB) ^ 
+involvesLetter(?LOB, ?B) ^ 
+involvesDiacritic(?LOB, NoDiacritic) ^ 
+followedBy(?LOB, ?LO) ^ 
+involvesLetter(?LO, ?L) ^ 
+isSimilarTo(?B, ?L) ^ 
+swrlx:makeOWLThing(?R, ?LOB) 
+-> RuleOccurrence(?R) ^ 
+occursAt(?R, ?LOB) ^ 
+hasRuleType(?R, Idghaam-Mutajanisaan)
+
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar">قَد تَّبَيَّنَ — d merges into t → pronounced: قَتَّبَيَّنَ </span>  
+- <span dir="rtl" lang="ar">إِذ ظَلَمُوا → dh merges into zh → pronounced: إِظَّلَمُوا </span>  —
+
  
 ### Idghaam Ash-Shafawi (إدغام شفوي)
 
@@ -501,7 +560,6 @@ occursAt(?R, ?LO) ^
 hasRuleType(?R, IdghaamAshShafawi)
 
 ```
-
 **Examples:**
 - <span dir="rtl" lang="ar">فَهُمْ مِسْتَبْشِرُونَ</span> → The Meem in فَهُمْ (which is Sākinah) merges into the Meem in مِسْتَبْشِرُونَ:
 
