@@ -752,7 +752,7 @@ swrlx:makeOWLThing(?R, ?LO)
 ```
 ###  6. Ikhfāʾ Rule Silent State
 
-**Description**:Similar to above, but also includes silent letter detection before the pause, enabling proper tagging for real recitation contexts.
+**Description**: Similar to above, but also includes silent letter detection before the pause, enabling proper tagging for real recitation contexts.
 
 ```swrl
 LetterOccurrence(?LO) ^ 
@@ -767,18 +767,27 @@ swrlx:makeOWLThing(?R, ?LO)
 -> hasRuleState(?R, Continuation)
 
 ```
-###  Rule
+###   Ikhfāʾ Shafawi (الإخفاء الشفوي)
 
-**Description**:
+**Definition**: Occurs when a Meem Sakinah (مْ) is followed by a Bāʼ (ب). The sound of the Meem is hidden with ghunnah, similar to normal Ikhfāʾ, but articulated using the lips—hence termed "Shafawi" (lip-based).
 
+**Description**: Detects Ikhfāʾ Shafawi when Meem Sakinah is followed by Bāʼ, requiring a lip-based ghunnah sound.
 ```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, Meem) ^ 
+involvesDiacritic(?LO, NoDiacritic) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?L) ^ 
+IkhfaShafawiLetter(?L) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) 
+-> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IkhfaAshShafawi)
 ```
 
 
 ###  Rule
 
-**Description**:
-
+**Description**: 
 ```swrl
 ```
 
