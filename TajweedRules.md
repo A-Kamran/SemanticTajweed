@@ -374,64 +374,137 @@ hasRuleType(?R, IdghaamWithoutGhunnah)
   
 **Interpretation:** This rule ensures the system distinguishes non-nasal Idghaam from other forms, allowing accurate Tajweed rule classification for cases involving Ra or Lam after Noon Sakinah or Tanween.
 
-###  Tanween Idgham Without Ghunnah Rule
+### Tanween Idgham Without Ghunnah Rule
 
 
-**Description**:
+**Description**:This rule detects Idghaam without Ghunnah when Tanween (ً ٍ ٌ) is followed by one of the letters ر (Ra) or ل (Lam) — known as Idghaam Without Ghunnah Letters. In this case, the Tanween is completely merged into the next letter without nasalization (Ghunnah). The transition is smooth, and the nasal sound is omitted.
 
 **Applicable Scenario**: 
-- 
+- A Tanween diacritic is applied to a letter.
+- The following letter is either ر or ل.
+- The merge happens without any nasalization.
+- This rule captures this specific interaction for rule inference.
 
 ```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, ?p) ^ 
+Letter(?p) ^ 
+involvesDiacritic(?LO, ?T) ^ 
+Tanween(?T) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?L) ^ 
+IdghaamWithoutGhunnahLetter(?L) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) -> 
+RuleOccurrence(?R) ^ 
+occursAt(?R, ?LO) ^ 
+hasRuleType(?R, IdghaamWithoutGhunnah)
+
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar"> </span>  —
+  
+**Interpretation:**  This rule handles cases where Tanween merges into Ra or Lam without producing the nasal sound associated with Ghunnah, and is a crucial distinction from Idghaam with Ghunnah.
+
+###  Tanween Idgham Without Ghunnah Rule (With Silent Letter Between)
+
+**Description**: This rule detects Idghaam without Ghunnah when a letter with Tanween (ً ٍ ٌ) is followed by a Silent Letter, which is then followed by ر (Ra) or ل (Lam) — the designated Idghaam Without Ghunnah Letters. The rule captures the transitional scenario where a non-pronounced (silent) character exists between the Tanween and the merging letter, and the nasalization (Ghunnah) is still not applied.
+
+**Applicable Scenario**: 
+- A letter carries a Tanween diacritic.
+- The next letter is a silent letter (e.g., Alif Sakinah or similar).
+- That silent letter is immediately followed by Ra or Lam.
+- The Tanween is fully merged without Ghunnah despite the intermediate silent character.
+
+```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, ?p) ^ 
+Letter(?p) ^ 
+involvesDiacritic(?LO, ?T) ^ 
+Tanween(?T) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?S) ^ 
+SilentLetter(?S) ^ 
+followedBy(?LOF, ?LOH) ^ 
+LetterOccurrence(?LOH) ^ 
+involvesLetter(?LOH, ?L) ^ 
+IdghaamWithoutGhunnahLetter(?L) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) -> 
+RuleOccurrence(?R) ^ 
+occursAt(?R, ?LO) ^ 
+hasRuleType(?R, IdghaamWithoutGhunnah)
+```
+
+**Examples:**
+- <span dir="rtl" lang="ar"> </span>  —
+
+**Interpretation:** Even when a silent separator exists between the Tanween and the Idghaam target letter, the merging process can still occur without nasalization, which this rule captures.
+
+###  Idghaam Without Ghunnah – Rule State (Continuation after Silent Letter & End of Ayah)
+
+**Description**: This rule determines the state of an existing Idghaam Without Ghunnah occurrence when it is followed by a Silent Letter, and a Pause Marker (such as the end of an Ayah). In this context, the rule state is inferred as "Continuation", meaning that although the recitation pauses (e.g., due to the end of a verse), the Idghaam rule logically holds as a structural feature of the text, even if not recited fully
+
+```swrl
+LetterOccurrence(?LO) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, ?S) ^ 
+SilentLetter(?S) ^ 
+involvesPauseMarker(?LOF, endOfAyah) ^ 
+RuleOccurrence(?R) ^ 
+occursAt(?R, ?LO) ^ 
+hasRuleType(?R, IdghaamWithoutGhunnah) ^  
+swrlx:makeOWLThing(?R, ?LO) -> 
+hasRuleState(?R, Continuation)
 
 ```
 
 **Examples:**
 - <span dir="rtl" lang="ar"> </span>  —
 
+**Interpretation:** This rule ensures your system properly classifies Idghaam Without Ghunnah as logically applicable even when not verbally completed due to a pause in recitation. This is crucial for knowledge representation, where rule validity and phonetic realization may diverge.
+ 
+### Idghaam Ash-Shafawi (إدغام شفوي)
 
-###  Rule
+**Definition:**  Idghām Shafawī is a Tajweed rule that involves the merging of Meem Sākinah (مْ) into another Meem (م) that directly follows it. The result is a nasalized, merged sound (ghunnah), articulated using the lips — hence the term "shafawī" which means "labial."
 
-**Description**:
+
+<!-- | **Rule**           | **Trigger**                                    | **Description**                                            |
+| ------------------ | ---------------------------------------------- | ---------------------------------------------------------- |
+| **Idghām Shafawī** | Meem Sākinah (مْ) followed by Meem (م)         | Merge with ghunnah (nasal sound) using lips                |
+| **Ikhfā’ Shafawī** | Meem Sākinah (مْ) followed by Ba (ب)           | Hide the Meem sound partially, with light ghunnah          |
+| **Izhār Shafawī**  | Meem Sākinah (مْ) followed by any other letter | Pronounce the Meem clearly without merging or nasalization |
+-->
+
 
 **Applicable Scenario**: 
-- 
+- The first letter is Meem Sākinah (مْ) — a Meem with no vowel.
+-  It is followed immediately by another Meem (م).
+-  The merging occurs with ghunnah, pronounced for two counts.
+-  It can happen within one word or between two words.
+
 
 ```swrl
+LetterOccurrence(?LO) ^ 
+involvesLetter(?LO, Meem) ^ 
+involvesDiacritic(?LO, ?diac) ^ 
+NonPronouncedDiacritic(?diac) ^ 
+followedBy(?LO, ?LOF) ^ 
+LetterOccurrence(?LOF) ^ 
+involvesLetter(?LOF, Meem) ^ 
+hasLetterPosition(?LO, ?P) ^ 
+swrlx:makeOWLThing(?R, ?LO, ?LOF) 
+-> RuleOccurrence(?R) ^ 
+occursAt(?R, ?LO) ^ 
+hasRuleType(?R, IdghaamAshShafawi)
 
 ```
 
 **Examples:**
+- <span dir="rtl" lang="ar">فَهُمْ مِسْتَبْشِرُونَ</span> → The Meem in فَهُمْ (which is Sākinah) merges into the Meem in مِسْتَبْشِرُونَ:
 
-- <span dir="rtl" lang="ar"> </span>  —
-
-###  Rule
-
-**Description**:
-
-**Applicable Scenario**: 
-- 
-
-```swrl
-
-```
-
-**Examples:**
-- <span dir="rtl" lang="ar"> </span>  —
-
-###  Rule
-
-**Description**:
-
-**Applicable Scenario**: 
-- 
-
-```swrl
-
-```
-
-**Examples:**
-- <span dir="rtl" lang="ar"> </span>  —
 
 ###  Rule
 
