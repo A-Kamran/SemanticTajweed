@@ -73,3 +73,12 @@
 | Greater Qalqalah | القلقلة الكبرى       | Stronger echoing at the end of a word or with pause. |
 
 ---
+### **7. Tafkheem and Tarqeeq Rules**
+
+| Rule Type                    | Description                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| Permanent Tafkheem           | Certain letters such as **خ، ص، ض، غ، ط، ق** are always pronounced with heaviness (Tafkheem).    |
+| Conditional Tafkheem/Tarqeeq | The letter **ر** is heavy when preceded by Fatha or Damma, and light when preceded by Kasra.     |
+| Conditional Tafkheem/Tarqeeq | The **ل** in the word **"الله"** is heavy when preceded by Fatha or Damma, and light with Kasra. |
+| Contextual (Alif)            | **Alif** inherits the heaviness or lightness of the letter before it.                            |
+| Permanent Tarqeeq            | All other letters are always pronounced with lightness (Tarqeeq).                                |
