@@ -9,8 +9,8 @@
 | ----------------- | -------------------- | -------------------------------------------------------------------------------- |
 | Al-Izhaar       | الإظهار              | Clear pronunciation of Noon Sakinah or Tanween before throat letters.            |
 | Al-Idghaam        | الإدغام              | Merging Noon Sakinah or Tanween into the following letter.                       |
-| — With Ghunnah    | — الإدغام بغنة       | Merging with nasalization into ي, ن, م, و.                                       |
-| — Without Ghunnah | — الإدغام بغير غنة   | Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل. |
+| — With Ghunnah    |  الإدغام بغنة       | Merging with nasalization into ي, ن, م, و.                                       |
+| — Without Ghunnah |  الإدغام بغير غنة   | Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل. |
 | Iqlab             | الإقلاب              | Changing Noon Sakinah or Tanween into Meem before ب.                             |
 | Ikhfa             | الإخفاء              | Concealment with nasalization when followed by specific letters.                 |
 
