@@ -2,37 +2,37 @@
 
 This document groups SWRL conditions by their corresponding Tajweed rule types. Each section provides a clear summary of the rule and lists all associated logic conditions.
 
-## AlifWasl
+## 1. AlifWasl/Hamzatul Wasl
 
 **Description**: Silent Alif at the beginning of words, pronounced when continuing but silent when stopping.
 
 **SWRL Logic Variants**:
-### Variant 1: Hamzatul Wasl
+### Rule: Hamzatul Wasl
 ```swrl
 LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, AlifWasl)
 ```
 
-## Ghunnah-Complete
+## 2. Ghunnah-Complete
 
 **Description**: Full nasal sound with Noon or Meem accompanied by Shadda, pronounced clearly and fully.
 
 **SWRL Logic Variants**:
-### Variant 1: Ghunnah Complete
+### Rule: Ghunnah Complete
 ```swrl
 LetterOccurrence(?LOP) ^ followedBy(?LOP, ?LO) ^ GhunnahLetter(?gl) ^ followedBy(?LO1, ?LO) ^ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?gl) ^ involvesDiacritic(?LO, Shadda) ^ involvesDiacritic(?LO1, ?h) ^ BasicHarakaat(?h) ^ isPartOfWord(?LOP, ?w1) ^ isPartOfWord(?LO, ?w1) ^ swrlx:makeOWLThing(?R, ?LO, ?LO1) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Ghunnah-Complete)
 ```
 
-## GreaterQalqalah
+## 3. GreaterQalqalah
 
 **Description**: Strong echoing sound on Qalqalah letters at the end of a word or with a stopping pause.
 
 **SWRL Logic Variants**:
-### Variant 1: Greater Qalqalah
+###  Rule: Greater Qalqalah
 ```swrl
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesDiacritic(?LO, ?diac) ^ SukoonOnStopDiacritic(?diac) ^ involvesPauseMarker(?LO, endOfAyah) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Qalqalah) ^ hasRuleState(?R, Stopping) ^ hasRuleType(?R, GreaterQalqalah)
 ```
 
-## Idghaam-Mutajanisaan
+## 4. Idghaam-Mutajanisaan
 
 **Description**: Assimilation of letters with similar articulation points but different characteristics.
 
@@ -42,7 +42,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 LetterOccurrence(?LOB) ^ involvesLetter(?LOB, ?B) ^ involvesDiacritic(?LOB, NoDiacritic) ^ followedBy(?LOB, ?LO) ^ involvesLetter(?LO, ?L) ^ isSimilarTo(?B, ?L) ^ swrlx:makeOWLThing(?R, ?LOB) -> RuleOccurrence(?R) ^ occursAt(?R, ?LOB) ^ hasRuleType(?R,  Idghaam-Mutajanisaan)
 ```
 
-## Idghaam-Mutaqaribaan
+## 5. Idghaam-Mutaqaribaan
 
 **Description**: Assimilation of letters with closely related articulation points.
 
@@ -57,7 +57,7 @@ LetterOccurrence(?LOB) ^ involvesLetter(?LOB, Laam) ^ involvesDiacritic(?LOB, No
 LetterOccurrence(?LOB) ^ involvesLetter(?LOB, Qaaf) ^ involvesDiacritic(?LOB, NoDiacritic) ^ followedBy(?LOB, ?LO) ^ involvesLetter(?LO, Kaaf) ^ isCloseTo(Qaaf, Kaaf)  ^ swrlx:makeOWLThing(?R, ?LOB) -> RuleOccurrence(?R) ^ occursAt(?R, ?LOB) ^ hasRuleType(?R, Idghaam-Mutaqaribaan)
 ```
 
-## IdghaamAshShafawi
+## 6. IdghaamAshShafawi
 
 **Description**: Merging of Meem Sakinah with Ba, producing a nasal sound.
 
@@ -72,7 +72,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Meem) ^ involvesDiacritic(?LO, ?diac
 LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IdghaamAshShafawi) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## IdghaamWithGhunnah
+## 7. IdghaamWithGhunnah
 
 **Description**: Merging of Noon Sakinah or Tanween with (ي ن م و) with nasalization.
 
@@ -102,7 +102,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?S) ^ SilentLetter(?S) ^ involvesPauseMarker(?LOF, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IdghaamWithGhunnah) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## IdghaamWithGhunnah-Complete
+## 8. IdghaamWithGhunnah-Complete
 
 **Description**: Full nasal assimilation with Shadda, ensuring a complete nasal sound.
 
@@ -117,7 +117,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, ?diac
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, ?T) ^ Tanween(?T) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?L) ^ CompleteIdghaamWithGhunnahLetter(?L) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IdghaamWithGhunnah-Complete)
 ```
 
-## IdghaamWithGhunnah-InComplete
+## 9. IdghaamWithGhunnah-InComplete
 
 **Description**: Partial nasal assimilation without Shadda, producing a lighter nasal sound.
 
@@ -132,7 +132,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Noon) ^ involvesDiacritic(?LO, ?diac
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, ?T) ^ Tanween(?T) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?L) ^ IncompleteIdghaamWithGhunnahLetter(?L) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IdghaamWithGhunnah-InComplete)
 ```
 
-## IdghaamWithoutGhunnah
+## 10. IdghaamWithoutGhunnah
 
 **Description**: Merging without nasalization when Noon Sakinah or Tanween is followed by ر or ل.
 
@@ -162,7 +162,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IdghaamWithoutGhunnah) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## Ikhfa
+## 11. Ikhfa
 
 **Description**: Concealment of Noon Sakinah or Tanween, producing a nasal sound between Idhaar and Idghaam.
 
@@ -197,17 +197,17 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?S) ^ SilentLetter(?S) ^ involvesPauseMarker(?LOF, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Ikhfa) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## IkhfaAshShafawi
+## 12. IkhfaAshShafawi
 
 **Description**: Concealment of Meem Sakinah when followed by Ba, producing a light nasal sound.
 
 **SWRL Logic Variants**:
-### Variant 1: Ikhfa Shafawi Rule
+### Rule : Ikhfa Shafawi Rule
 ```swrl
  LetterOccurrence(?LO) ^ involvesLetter(?LO, Meem) ^ involvesDiacritic(?LO, NoDiacritic) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, ?L) ^ IkhfaShafawiLetter(?L) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, IkhfaAshShafawi)
 ```
 
-## Iqlab
+## 13. Iqlab
 
 **Description**: Conversion of Noon Sakinah or Tanween into Meem before Ba, with complete nasalization.
 
@@ -242,7 +242,7 @@ LetterOccurrence(?LO) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involve
 LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Iqlab) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## LaamAlQamari
+## 14. LaamAlQamari
 
 **Description**: Clear pronunciation of Laam before Qamari letters (e.g., القمر).
 
@@ -252,7 +252,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ followedBy(?LO, ?LOF) ^ involvesLetter(?LOF, Laam) ^ followedBy(?LOF, ?LOH) ^ involvesLetter(?LOH, ?h) ^ QamariLetter(?h) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, LaamAlQamari)
 ```
 
-## LaamAshShamsi
+## 15. LaamAshShamsi
 
 **Description**: Silent Laam before Shamsi letters, with Shadda on the next letter (e.g., الشمس).
 
@@ -267,7 +267,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, AlifWasl) ^ followedBy(?LO, ?LOF) ^ 
 LetterOccurrence(?LO) ^ involvesLetter(?LO, Laam) ^ followedBy(?LO, ?LOF) ^ involvesLetter(?LOF, Laam) ^ involvesDiacritic(?LOF, NoDiacritic) ^ followedBy(?LOF, ?LOH) ^ involvesLetter(?LOH, ?h) ^ ShamsiLetter(?h) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LOF) ^ hasRuleType(?R, LaamAshShamsi)
 ```
 
-## Leen-Wow
+## 16.  Leen-Wow
 
 **Description**: (Heuristic description not confidently generated)
 
@@ -277,7 +277,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, Laam) ^ followedBy(?LO, ?LOF) ^ invo
 followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LO, ?p) ^ involvesLetter(?LOF, Wow) ^ involvesDiacritic(?LO, Fatha) ^ Letter(?p) ^ involvesDiacritic(?LOF, Sukun) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Leen-Wow)
 ```
 
-## Leen-Yaa
+## 17. Leen-Yaa
 
 **Description**: (Heuristic description not confidently generated)
 
@@ -287,7 +287,7 @@ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ LetterOccurrence(?LOF) ^ involve
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p)  ^ Letter(?p) ^ involvesDiacritic(?LO, Fatha) ^ followedBy(?LO, ?LOF) ^  LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Yaa) ^   involvesDiacritic(?LOF, Sukun) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Leen-Yaa)
 ```
 
-## LesserQalqalah
+## 18. LesserQalqalah
 
 **Description**: Weaker echoing sound compared to Greater Qalqalah, usually in the middle of a word.
 
@@ -297,7 +297,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p)  ^ Letter(?p) ^ involvesDiacriti
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesDiacritic(?LO, Sukun)^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Qalqalah) ^ hasRuleType(?R, LesserQalqalah)
 ```
 
-## Medd-Alif
+## 19.  Medd-Alif
 
 **Description**: Elongation of Alif vowel sound by two Harakaat when preceded by Fatha.
 
@@ -307,7 +307,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, Fatha) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Alif) ^ involvesDiacritic(?LOF, ?d) ^ MeddDiacritic(?d) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, Medd-Alif) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Medd-DaggerAlif
+## 20. Medd-DaggerAlif
 
 **Description**: Short elongation with a small Alif symbol above certain letters, pronounced for two Harakaat.
 
@@ -317,7 +317,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, DaggerAlif) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, Medd-DaggerAlif) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Medd-Wow
+## 21. Medd-Wow
 
 **Description**: Elongation of Wow vowel sound by two Harakaat when preceded by Damma.
 
@@ -327,7 +327,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, Damma) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Wow) ^ involvesDiacritic(?LOF, ?d) ^ MeddDiacritic(?d) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, Medd-Wow) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Medd-Wow-SmallWow
+## 22. Medd-Wow-SmallWow
 
 **Description**: Short elongation with a small Wow symbol.
 
@@ -337,7 +337,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, Wow) ^ Letter(?p) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, Medd-Wow-SmallWow) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Medd-Yaa
+## 23. Medd-Yaa
 
 **Description**: Elongation of Yaa vowel sound by two Harakaat when preceded by Kasra.
 
@@ -352,7 +352,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, Kasra) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Yaa) ^ involvesDiacritic(?LOF, ?d) ^ MeddDiacritic(?d) ^ isPartOfWord(?LOF, ?w1) ^ isPartOfWord(?LO, ?w2) ^ wordIndex(?w1, ?index1) ^ wordIndex(?w2, ?index2) ^ swrlb:equal(?index1, ?index2) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Medd-Yaa) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Medd-Yaa-SmallHighYaa
+## 24. Medd-Yaa-SmallHighYaa
 
 **Description**: Short elongation of Yaa with a small high Yaa symbol.
 
@@ -362,7 +362,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallHighYaa) ^ involvesLetter(?LO, Yaa) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Medd-Yaa-SmallHighYaa) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Medd-Yaa-SmallYaa
+## 25. Medd-Yaa-SmallYaa
 
 **Description**: Short elongation of Yaa with a small Yaa symbol.
 
@@ -372,7 +372,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallHighYaa) ^ involvesLetter(?L
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, AlifMaksura) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Medd-Yaa-SmallYaa) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## MeddAlEwad
+## 26. MeddAlEwad
 
 **Description**: Elongation of Tanween Fatha at the end of a verse when stopping, replacing it with Alif sound.
 
@@ -387,7 +387,7 @@ followedBy(?LO, ?LOF) ^ involvesDiacritic(?LO, Fathatain) ^ LetterOccurrence(?LO
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, Fathatain) ^ involvesLetter(?LO, Hamza) ^ involvesPauseMarker(?LO, endOfAyah) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, MeddAlEwad) ^ hasRuleState(?R, Stopping)
 ```
 
-## MeddAsSila
+## 27. MeddAsSila
 
 **Description**: Short elongation with a small Yaa symbol for the pronoun Ha.
 
@@ -402,7 +402,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, R
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, RoundHaa) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, MeddAsSila) ^ hasRuleType(?R, MeddAsSila-SmallWow)
 ```
 
-## MeddAsSila-SmallWow
+## 28. MeddAsSila-SmallWow
 
 **Description**: Short elongation with a small Wow symbol for the pronoun Ha.
 
@@ -412,7 +412,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, R
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, RoundHaa) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, MeddAsSila) ^ hasRuleType(?R, MeddAsSila-SmallWow)
 ```
 
-## MeddAsSila-SmallYaa
+## 29. MeddAsSila-SmallYaa
 
 **Description**: Short elongation with a small Yaa symbol for the pronoun Ha.
 
@@ -422,7 +422,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, R
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, RoundHaa) ^ Letter(?p) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, MeddAsSila) ^ hasRuleType(?R, MeddAsSila-SmallYaa)
 ```
 
-## MeddAsSilaKubra
+## 30. MeddAsSilaKubra
 
 **Description**: Extended elongation with a small Yaa symbol, pronounced up to 6 Harakaat.
 
@@ -437,7 +437,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, R
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, RoundHaa) ^ Letter(?p) ^ followedBy(?LO, ?LOF) ^ involvesLetter(?LOF, ?h) ^ HamzaLetter(?h) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, MeddAsSilaKubra) ^ hasRuleType(?R, MeddAsSilaWowKubra)
 ```
 
-## MeddAsSilaWowKubra
+## 31. MeddAsSilaWowKubra
 
 **Description**: Extended elongation with a small Wow symbol, pronounced up to 6 Harakaat.
 
@@ -447,7 +447,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, R
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallWow) ^ involvesLetter(?LO, RoundHaa) ^ Letter(?p) ^ followedBy(?LO, ?LOF) ^ involvesLetter(?LOF, ?h) ^ HamzaLetter(?h) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, MeddAsSilaKubra) ^ hasRuleType(?R, MeddAsSilaWowKubra)
 ```
 
-## MeddAsSilaYaaKubra
+## 32. MeddAsSilaYaaKubra
 
 **Description**: Extended elongation with a small Yaa symbol, pronounced up to 6 Harakaat.
 
@@ -462,7 +462,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, R
 LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, MeddAsSilaYaaKubra) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## MeddMuttasil-Derived
+## 33. MeddMuttasil-Derived
 
 **Description**: Primary form of joined elongation, pronounced for 4 to 6 Harakaat.
 
@@ -472,7 +472,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, MeddMuttasil-Derived) ^  swrlx:makeOWLThing(?R, ?LO) -> hasRuleState(?R, Continuation)
 ```
 
-## MeddMuttasil-Primary
+## 34. MeddMuttasil-Primary
 
 **Description**: Primary form of joined elongation, pronounced for 4 to 6 Harakaat.
 
@@ -482,7 +482,7 @@ LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R)
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, Fatha) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Alif) ^ followedBy(?LOF, ?LOH) ^ involvesLetter(?LOH, ?h) ^ HamzaLetter(?h) ^ isPartOfWord(?LOF, ?w1) ^ isPartOfWord(?LOH, ?w2) ^ wordIndex(?w1, ?index1) ^ wordIndex(?w2, ?index2) ^ swrlb:equal(?index1, ?index2) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, MeddMuttasil-Primary)
 ```
 
-## MeddWowLeen
+## 35. MeddWowLeen
 
 **Description**: Soft elongation of Wow when preceded by Fatha and followed by Sukoon.
 
@@ -492,7 +492,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, Fatha) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Wow) ^ involvesDiacritic(?LOF, Sukun) ^ followedBy(?LOF, ?LOH) ^ LetterOccurrence(?LOH) ^ involvesLetter(?LOH, ?LH) ^ involvesDiacritic(?LOH, ?diac) ^ SukoonOnStopDiacritic(?diac) ^ involvesPauseMarker(?LOH, endOfAyah) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, MeddWowLeen) ^ hasRuleState(?R, Stopping)
 ```
 
-## MeddYaaLeen
+## 36. MeddYaaLeen
 
 **Description**: Soft elongation of Yaa when preceded by Fatha and followed by Sukoon.
 
@@ -502,7 +502,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, Fatha) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Yaa) ^ involvesDiacritic(?LOF, Sukun) ^ followedBy(?LOF, ?LOH) ^ LetterOccurrence(?LOH) ^ involvesLetter(?LOH, ?LH) ^ involvesDiacritic(?LOH, ?diac) ^ SukoonOnStopDiacritic(?diac) ^ involvesPauseMarker(?LOH, endOfAyah) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, MeddYaaLeen) ^ hasRuleState(?R, Stopping)
 ```
 
-## Nabr-HamzaSukun
+## 37. Nabr-HamzaSukun
 
 **Description**: Special stopping behavior with pause on certain letters or elongations (Nabr).
 
@@ -512,7 +512,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ HamzaLetter(?p) ^ involvesDiacritic(?LO, ?diac) ^ SukoonOnStopDiacritic(?diac) ^ involvesPauseMarker(?LO, endOfAyah) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Nabr-HamzaSukun)
 ```
 
-## Nabr-StopShadd
+## 38. Nabr-StopShadd
 
 **Description**: Nasal sound (Ghunnah) identified by presence of Shadda on a specific letter.
 
@@ -522,7 +522,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ HamzaLetter(?p) ^ involvesDiac
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, Shadda) ^ involvesLetter(?LO, ?L) ^ involvesPauseMarker(?LO, endOfAyah) ^ NonGhunnahLetter(?L) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Nabr-StopShadd) ^ hasRuleState(?R, Stopping)
 ```
 
-## Nabr-WowShadd
+## 39. Nabr-WowShadd
 
 **Description**: Special stopping behavior with pause on certain letters or elongations (Nabr).
 
@@ -532,7 +532,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, Shadda) ^ involvesLetter(?LO, ?L)
 followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ involvesDiacritic(?LOF, Shadda) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LO, ?p) ^ involvesDiacritic(?LO, ?diac) ^ FathaDamma(?diac) ^ involvesLetter(?LOF, Wow) ^ Letter(?p) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Nabr-WowShadd)
 ```
 
-## Nabr-YaaShadd
+## 40. Nabr-YaaShadd
 
 **Description**: Special stopping behavior with pause on certain letters or elongations (Nabr).
 
@@ -542,7 +542,7 @@ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LO) ^ involvesDiacritic(?LOF, Shadda) 
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ Letter(?p) ^ involvesDiacritic(?LO, ?diac) ^ FathaKasra(?diac) ^ followedBy(?LO, ?LOF) ^ LetterOccurrence(?LOF) ^ involvesLetter(?LOF, Yaa) ^ involvesDiacritic(?LOF, Shadda) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Nabr-YaaShadd)
 ```
 
-## OriginalMedd
+## 41. OriginalMedd
 
 **Description**: Elongation of Alif vowel sound by two Harakaat when preceded by Fatha.
 
@@ -587,7 +587,7 @@ LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallYaa) ^ involvesLetter(?LO, A
 LetterOccurrence(?LO) ^ involvesDiacritic(?LO, SmallHighYaa) ^ involvesLetter(?LO, Yaa) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Medd-Yaa-SmallHighYaa) ^ hasRuleType(?R, OriginalMedd)
 ```
 
-## Qalqalah
+## 42. Qalqalah
 
 **Description**: Echoing sound produced with Sukoon on Qalqalah letters (ق ط ب ج د), creating a bouncing effect.
 
@@ -617,7 +617,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?L) ^ QalqalahLetter(?L) ^ involvesD
 LetterOccurrence(?LO) ^ involvesPauseMarker(?LO, endOfAyah) ^ RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Qalqalah)  ^ swrlx:makeOWLThing(?R, ?LO) ->  hasRuleState(?R, Stopping)
 ```
 
-## Tafkheem-Alif
+## 43. Tafkheem-Alif
 
 **Description**: Heaviness in Alif pronunciation when preceded by certain letters or sounds.
 
@@ -632,7 +632,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ followedBy(?LO, ?LOF) ^ involvesLetter(?LOF, AlifMaksura) ^ involvesDiacritic(?LOF, DaggerAlif) ^ swrlx:makeOWLThing(?R, ?LO, ?LOF) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, Tafkheem-Alif)
 ```
 
-## Tafkheem-Highest
+## 44. Tafkheem-Highest
 
 **Description**: Strongest form of heaviness, usually with heavy letters in prominent positions.
 
@@ -642,7 +642,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ involvesDiacritic(?LO, ?d) ^ FathaFathatain(?d) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^  hasRuleType(?R, Tafkheem-Highest)
 ```
 
-## Tafkheem-Lowest
+## 45. Tafkheem-Lowest
 
 **Description**: Weakest form of heaviness in certain phonetic contexts.
 
@@ -652,7 +652,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ involvesDiacritic(?LO, ?d) ^ KasraKasratain(?d) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Tafkheem-Lowest)
 ```
 
-## Tafkheem-Middle
+## 46. Tafkheem-Middle
 
 **Description**: Medium level of heaviness depending on the surrounding letters.
 
@@ -662,7 +662,7 @@ LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ 
 LetterOccurrence(?LO) ^ involvesLetter(?LO, ?p) ^ PermanentTafkheemLetter(?p) ^ involvesDiacritic(?LO, ?d) ^ DammaDammatain(?d) ^ swrlx:makeOWLThing(?R, ?LO) -> RuleOccurrence(?R) ^ occursAt(?R, ?LO) ^ hasRuleType(?R, Tafkheem-Middle)
 ```
 
-## Tarqeeq-Alif
+## 47. Tarqeeq-Alif
 
 **Description**: Light pronunciation of Alif in certain contexts.
 
