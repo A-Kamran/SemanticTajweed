@@ -1,0 +1,3214 @@
+@prefix : <http://www.semantictajweed.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semantictajweed.com/ontology/> .
+
+<http://www.semantictajweed.com/ontology/> rdf:type owl:Ontology ;
+                                            owl:versionIRI <http://www.semantictajweed.com/ontology/1.0.0> ;
+                                            <http://purl.org/dc/terms/creator> "Amna Basharat" ,
+                                                                               "Amna Binte Kamran" ;
+                                            <http://purl.org/dc/terms/description> "An ontology about Arabic Letters and their characteristics in the recitation of The Holy Quran. The ontology is annotated in both Arabic and English." ;
+                                            <http://purl.org/dc/terms/license> "CC BY-SA 4.0" ;
+                                            rdfs:isDefinedBy "tajweed:" ;
+                                            rdfs:label "Tajweed Rules"@en ,
+                                                       "قواعد التجويد"@ar .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#equivalentClass
+owl:equivalentClass rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#sameAs
+owl:sameAs rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semantictajweed.com/ontology/belongsToGroup
+:belongsToGroup rdf:type owl:ObjectProperty ;
+                rdfs:domain :Letter ;
+                rdfs:range :GroupOfLetters .
+
+
+###  http://www.semantictajweed.com/ontology/followedBy
+:followedBy rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/hasArticulationPoint
+:hasArticulationPoint rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :isArticulationPointof ;
+                      rdfs:domain :Letter ;
+                      rdfs:range :ArticulationPoint .
+
+
+###  http://www.semantictajweed.com/ontology/hasCharacteristic
+:hasCharacteristic rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isCharacteristicOf ;
+                   rdfs:domain :Letter ;
+                   rdfs:range :BasicCharacteristic .
+
+
+###  http://www.semantictajweed.com/ontology/hasCharacteristicType
+:hasCharacteristicType rdf:type owl:ObjectProperty ;
+                       owl:inverseOf :hasCharacteristicType ;
+                       rdf:type owl:IrreflexiveProperty ;
+                       rdfs:domain :BasicCharacteristic ,
+                                   :TypeOfCharacteristic ;
+                       rdfs:range :BasicCharacteristic ,
+                                  :TypeOfCharacteristic .
+
+
+###  http://www.semantictajweed.com/ontology/hasLetter
+:hasLetter rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasPart ;
+           rdf:type owl:AsymmetricProperty ,
+                    owl:IrreflexiveProperty ;
+           rdfs:domain :Word ;
+           rdfs:range :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/hasLetterOccurrence
+:hasLetterOccurrence rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasPart ;
+                     owl:inverseOf :isPartOfWord ;
+                     rdfs:domain :Word ;
+                     rdfs:range :LetterOccurrence .
+
+
+###  http://www.semantictajweed.com/ontology/hasPart
+:hasPart rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/hasRuleInstance
+:hasRuleInstance rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :occursAt .
+
+
+###  http://www.semantictajweed.com/ontology/hasRuleOccurrence
+:hasRuleOccurrence rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :hasRuleType .
+
+
+###  http://www.semantictajweed.com/ontology/hasRuleState
+:hasRuleState rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/hasRuleType
+:hasRuleType rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/hasVerse
+:hasVerse rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasPart ;
+          owl:inverseOf :isPartOfChapter ;
+          rdfs:domain :Chapter ;
+          rdfs:range :Verse .
+
+
+###  http://www.semantictajweed.com/ontology/hasWord
+:hasWord rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasPart ;
+         owl:inverseOf :isPartOfVerse ;
+         rdfs:domain :Verse .
+
+
+###  http://www.semantictajweed.com/ontology/involvesAnatomicalUnit
+:involvesAnatomicalUnit rdf:type owl:ObjectProperty ;
+                        rdfs:domain :ArticulationPoint ;
+                        rdfs:range :AnatomicalUnit .
+
+
+###  http://www.semantictajweed.com/ontology/involvesArticulationArea
+:involvesArticulationArea rdf:type owl:ObjectProperty ;
+                          owl:inverseOf :isInvolvedInArticulationOf ;
+                          rdfs:range :AreaOfArticulation .
+
+
+###  http://www.semantictajweed.com/ontology/involvesDiacritic
+:involvesDiacritic rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/involvesLetter
+:involvesLetter rdf:type owl:ObjectProperty ;
+                rdfs:domain :LetterOccurrence ;
+                rdfs:range :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/involvesPauseMarker
+:involvesPauseMarker rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/isArticulationPointof
+:isArticulationPointof rdf:type owl:ObjectProperty ;
+                       rdfs:domain :ArticulationPoint ;
+                       rdfs:range :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/isCharacteristicOf
+:isCharacteristicOf rdf:type owl:ObjectProperty ,
+                             owl:AsymmetricProperty ;
+                    rdfs:domain :BasicCharacteristic ;
+                    rdfs:range :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/isCloseTo
+:isCloseTo rdf:type owl:ObjectProperty ;
+           rdfs:domain :Letter ;
+           rdfs:range :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/isInvolvedInArticulationOf
+:isInvolvedInArticulationOf rdf:type owl:ObjectProperty ;
+                            rdfs:domain :AreaOfArticulation .
+
+
+###  http://www.semantictajweed.com/ontology/isOppositeOf
+:isOppositeOf rdf:type owl:ObjectProperty ,
+                       owl:SymmetricProperty ;
+              rdfs:domain :CharacteristicsWithOpposite ;
+              rdfs:range :CharacteristicsWithOpposite .
+
+
+###  http://www.semantictajweed.com/ontology/isPartOf
+:isPartOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/isPartOfChapter
+:isPartOfChapter rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isPartOf .
+
+
+###  http://www.semantictajweed.com/ontology/isPartOfVerse
+:isPartOfVerse rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isPartOf .
+
+
+###  http://www.semantictajweed.com/ontology/isPartOfWord
+:isPartOfWord rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isPartOf .
+
+
+###  http://www.semantictajweed.com/ontology/isSimilarTo
+:isSimilarTo rdf:type owl:ObjectProperty ;
+             rdfs:domain :Letter ;
+             rdfs:range :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/occursAt
+:occursAt rdf:type owl:ObjectProperty .
+
+
+###  http://www.semantictajweed.com/ontology/partiallyInvolves
+:partiallyInvolves rdf:type owl:ObjectProperty ;
+                   rdfs:domain :CharacteristicsWithOpposite ;
+                   rdfs:range :CharacteristicsWithOpposite .
+
+
+###  http://www.semantictajweed.com/ontology/precededBy
+:precededBy rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semantictajweed.com/ontology/chapterIndex
+:chapterIndex rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/hasAppliedTajweedDefinition
+:hasAppliedTajweedDefinition rdf:type owl:DatatypeProperty ;
+                             rdfs:domain owl:Thing ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "Definitions of the concepts or instances that are applied in practical learning of Tajweed" .
+
+
+###  http://www.semantictajweed.com/ontology/hasDiacriticPosition
+:hasDiacriticPosition rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:integer .
+
+
+###  http://www.semantictajweed.com/ontology/hasExplaination
+:hasExplaination rdf:type owl:DatatypeProperty ;
+                 rdfs:domain owl:Thing ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semantictajweed.com/ontology/hasLetterPosition
+:hasLetterPosition rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:integer .
+
+
+###  http://www.semantictajweed.com/ontology/hasLinguisticDefinition
+:hasLinguisticDefinition rdf:type owl:DatatypeProperty ;
+                         rdfs:domain owl:Thing ;
+                         rdfs:range xsd:string ;
+                         rdfs:comment "Definition that is relating to language or lingustics" .
+
+
+###  http://www.semantictajweed.com/ontology/hasSheikhAlJazareeReference
+:hasSheikhAlJazareeReference rdf:type owl:DatatypeProperty ;
+                             rdfs:domain owl:Thing ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment """This is the matn (poem) of Muhammad bin Muhammad Bin Muhammad Bin 'Alee Bin Yuusuf Ibn Al Jazaree, who died in 833 Hijri, \"Al Muqaddimatu al Jazariyyah\" who has 109 verses, speaking of the rules of tajweed (art of Quranic recitation) and makhaarij Al huruuf (knowing the places from which the Arabic letters are pronounced). The poem is orignally in Arabic.
+
+In our ontology we have annotated it in English as well.""" .
+
+
+###  http://www.semantictajweed.com/ontology/revelationOrder
+:revelationOrder rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/revelationPlace
+:revelationPlace rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/verseCount
+:verseCount rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/verseIndex
+:verseIndex rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/verseText
+:verseText rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/wordIndex
+:wordIndex rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/wordRoot
+:wordRoot rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semantictajweed.com/ontology/wordText
+:wordText rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#seeAlso
+rdfs:seeAlso rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2002/07/owl#sameAs
+owl:sameAs rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semantictajweed.com/ontology/AnatomicalUnit
+:AnatomicalUnit rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/ApproximateArticulationPoint
+:ApproximateArticulationPoint rdf:type owl:Class ;
+                              rdfs:subClassOf :ArticulationPoint .
+
+
+###  http://www.semantictajweed.com/ontology/AreaOfArticulation
+:AreaOfArticulation rdf:type owl:Class ;
+                    rdfs:subClassOf :AnatomicalUnit ;
+                    owl:disjointWith :Characteristic ,
+                                     :Letter ,
+                                     :LexicalEntity .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPoint
+:ArticulationPoint rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :isArticulationPointof ;
+                                     owl:someValuesFrom :Letter
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :isPartOf ;
+                                     owl:someValuesFrom :AreaOfArticulation
+                                   ] ;
+                   owl:disjointWith :Characteristic ,
+                                    :Letter ,
+                                    :LexicalEntity .
+
+
+###  http://www.semantictajweed.com/ontology/BasicCharacteristic
+:BasicCharacteristic rdf:type owl:Class ;
+                     rdfs:subClassOf :Characteristic ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCharacteristicType ;
+                                       owl:someValuesFrom :TypeOfCharacteristic
+                                     ] ;
+                     owl:disjointWith :ConditionalCharacteristic .
+
+
+###  http://www.semantictajweed.com/ontology/BasicHarakaat
+:BasicHarakaat rdf:type owl:Class ;
+               rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/Chapter
+:Chapter rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/Characteristic
+:Characteristic rdf:type owl:Class ;
+                owl:disjointWith :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/CharacteristicsWithOpposite
+:CharacteristicsWithOpposite rdf:type owl:Class ;
+                             rdfs:subClassOf :BasicCharacteristic ;
+                             owl:disjointWith :CharacteristicsWithoutOpposite .
+
+
+###  http://www.semantictajweed.com/ontology/CharacteristicsWithoutOpposite
+:CharacteristicsWithoutOpposite rdf:type owl:Class ;
+                                rdfs:subClassOf :BasicCharacteristic .
+
+
+###  http://www.semantictajweed.com/ontology/CompleteIdghaamRule
+:CompleteIdghaamRule rdf:type owl:Class ;
+                     rdfs:subClassOf :IdghaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/CompleteIdghaamWithGhunnahLetter
+:CompleteIdghaamWithGhunnahLetter rdf:type owl:Class ;
+                                  rdfs:subClassOf :IdghaamWithGhunnahLetter .
+
+
+###  http://www.semantictajweed.com/ontology/ConditionalCharacteristic
+:ConditionalCharacteristic rdf:type owl:Class ;
+                           rdfs:subClassOf :Characteristic .
+
+
+###  http://www.semantictajweed.com/ontology/DammaDammatain
+:DammaDammatain rdf:type owl:Class ;
+                rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/Diacritic
+:Diacritic rdf:type owl:Class ;
+           rdfs:subClassOf :LexicalEntity .
+
+
+###  http://www.semantictajweed.com/ontology/DisjointedLetter
+:DisjointedLetter rdf:type owl:Class ;
+                  rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/FathaDamma
+:FathaDamma rdf:type owl:Class ;
+            rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/FathaFathatain
+:FathaFathatain rdf:type owl:Class ;
+                rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/FathaKasra
+:FathaKasra rdf:type owl:Class ;
+            rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/FathainDammain
+:FathainDammain rdf:type owl:Class ;
+                rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/GhunnahLetter
+:GhunnahLetter rdf:type owl:Class ;
+               rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/GhunnahRule
+:GhunnahRule rdf:type owl:Class ;
+             rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/GroupOfLetters
+:GroupOfLetters rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/HamzaLetter
+:HamzaLetter rdf:type owl:Class ;
+             rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/HamzatulwasalRule
+:HamzatulwasalRule rdf:type owl:Class ;
+                   rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofAshshafawiya
+:HaroofAshshafawiya rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :Letter
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :hasArticulationPoint ;
+                                                                 owl:hasValue :ArticulationPointofTwoLips
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ,
+                                        [ rdf:type owl:Class ;
+                                          owl:unionOf ( [ owl:intersectionOf ( :Letter
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty :hasArticulationPoint ;
+                                                                                 owl:hasValue :ArticulationPointFaa
+                                                                               ]
+                                                                             ) ;
+                                                          rdf:type owl:Class
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasArticulationPoint ;
+                                                          owl:hasValue :ArticuationPointWow
+                                                        ]
+                                                      )
+                                        ] .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeAlthalqeeyah
+:HaroofeAlthalqeeyah rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:unionOf ( [ owl:intersectionOf ( :Letter
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty :hasArticulationPoint ;
+                                                                                  owl:hasValue :ArticulationPointRaa
+                                                                                ]
+                                                                              ) ;
+                                                           rdf:type owl:Class
+                                                         ]
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasArticulationPoint ;
+                                                           owl:hasValue :ArticulationPointLaam
+                                                         ]
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasArticulationPoint ;
+                                                           owl:hasValue :ArticulationPointNoon
+                                                         ]
+                                                       )
+                                         ] ;
+                     rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeLahawiyyayn
+:HaroofeLahawiyyayn rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:unionOf ( [ owl:intersectionOf ( :Letter
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty :hasArticulationPoint ;
+                                                                                 owl:hasValue :ArticulationPointQaaf
+                                                                               ]
+                                                                             ) ;
+                                                          rdf:type owl:Class
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasArticulationPoint ;
+                                                          owl:hasValue :ArticulationPointKaaf
+                                                        ]
+                                                      )
+                                        ] ;
+                    rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeLathawiyya
+:HaroofeLathawiyya rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Letter
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasArticulationPoint ;
+                                                                owl:hasValue :ArticulationPointTipofTongueandBottomEdges
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeMadeeya
+:HaroofeMadeeya rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Letter
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasArticulationPoint ;
+                                                             owl:hasValue :ArticulationPointE1
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeNatiyya
+:HaroofeNatiyya rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Letter
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasArticulationPoint ;
+                                                             owl:hasValue :ArticulationPointofTopoftheTongue
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeSaafir
+:HaroofeSaafir rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Letter
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasArticulationPoint ;
+                                                            owl:hasValue :ArticulationPointTipofTongue
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeShajariya
+:HaroofeShajariya rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Letter
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasArticulationPoint ;
+                                                               owl:hasValue :ArticulationPointofMiddlePartofTongue
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamMutajanisainLetter
+:IdghaamMutajanisainLetter rdf:type owl:Class ;
+                           rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamRule
+:IdghaamRule rdf:type owl:Class ;
+             rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamShafawiLetter
+:IdghaamShafawiLetter rdf:type owl:Class ;
+                      rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamWithGhunnahLetter
+:IdghaamWithGhunnahLetter rdf:type owl:Class ;
+                          rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamWithoutGhunnahLetter
+:IdghaamWithoutGhunnahLetter rdf:type owl:Class ;
+                             rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IkhfaLetter
+:IkhfaLetter rdf:type owl:Class ;
+             rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IkhfaShafawiLetter
+:IkhfaShafawiLetter rdf:type owl:Class ;
+                    rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IncompleteIdghaamRule
+:IncompleteIdghaamRule rdf:type owl:Class ;
+                       rdfs:subClassOf :IdghaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/IncompleteIdghaamWithGhunnahLetter
+:IncompleteIdghaamWithGhunnahLetter rdf:type owl:Class ;
+                                    rdfs:subClassOf :IdghaamWithGhunnahLetter .
+
+
+###  http://www.semantictajweed.com/ontology/IqlabLetter
+:IqlabLetter rdf:type owl:Class ;
+             rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IzharLetter
+:IzharLetter rdf:type owl:Class ;
+             rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/IzharShafawiLetter
+:IzharShafawiLetter rdf:type owl:Class ;
+                    rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/KasraKasratain
+:KasraKasratain rdf:type owl:Class ;
+                rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/LaamRule
+:LaamRule rdf:type owl:Class ;
+          rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/Letter
+:Letter rdf:type owl:Class ;
+        rdfs:subClassOf :LexicalEntity .
+
+
+###  http://www.semantictajweed.com/ontology/LetterOccurrence
+:LetterOccurrence rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/LexicalEntity
+:LexicalEntity rdf:type owl:Class ;
+               rdfs:comment "This class is the collection of letters, words and Maad letters. Lexical Entity itself is not a term in Tajweed literature rather it contain terms that are used in Tajweed domain." .
+
+
+###  http://www.semantictajweed.com/ontology/MeddDiacritic
+:MeddDiacritic rdf:type owl:Class ;
+               rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLaazim
+:MeddLaazim rdf:type owl:Class ;
+            rdfs:subClassOf :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLaazimKalmi
+:MeddLaazimKalmi rdf:type owl:Class ;
+                 rdfs:subClassOf :MeddLaazim .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLeen
+:MeddLeen rdf:type owl:Class ;
+          rdfs:subClassOf :MeddOnStoppingRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLetter
+:MeddLetter rdf:type owl:Class ;
+            rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/MeddOnStoppingRule
+:MeddOnStoppingRule rdf:type owl:Class ;
+                    rdfs:subClassOf :MeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddRule
+:MeddRule rdf:type owl:Class ;
+          rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddSilaRule
+:MeddSilaRule rdf:type owl:Class ;
+              rdfs:subClassOf :MeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeemSakinahRule
+:MeemSakinahRule rdf:type owl:Class ;
+                 rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/MiddleCharacteristic
+:MiddleCharacteristic rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Characteristic
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :hasCharacteristicType ;
+                                                                   owl:hasValue :TheMiddleCharacteristics
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] .
+
+
+###  http://www.semantictajweed.com/ontology/NabrRule
+:NabrRule rdf:type owl:Class ;
+          rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/NaturalLeenRule
+:NaturalLeenRule rdf:type owl:Class ;
+                 rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/NaturalMeddDerived
+:NaturalMeddDerived rdf:type owl:Class ;
+                    rdfs:subClassOf :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/NaturalMeddPrimary
+:NaturalMeddPrimary rdf:type owl:Class ;
+                    rdfs:subClassOf :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/NaturalMeddRule
+:NaturalMeddRule rdf:type owl:Class ;
+                 rdfs:subClassOf :MeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/NonBasicDiacritic
+:NonBasicDiacritic rdf:type owl:Class ;
+                   rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/NonGhunnahLetter
+:NonGhunnahLetter rdf:type owl:Class ;
+                  rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/NonHaaYaaLetter
+:NonHaaYaaLetter rdf:type owl:Class ;
+                 rdfs:subClassOf :Letter ;
+                 rdfs:comment "Created for handling Harf-Nida" .
+
+
+###  http://www.semantictajweed.com/ontology/NonPronouncedDiacritic
+:NonPronouncedDiacritic rdf:type owl:Class ;
+                        rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/NoonSakinahAndTanweenRule
+:NoonSakinahAndTanweenRule rdf:type owl:Class ;
+                           rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/NotKasra
+:NotKasra rdf:type owl:Class ;
+          rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/PauseMarker
+:PauseMarker rdf:type owl:Class ;
+             rdfs:subClassOf :LexicalEntity .
+
+
+###  http://www.semantictajweed.com/ontology/PermanentTafkheemLetter
+:PermanentTafkheemLetter rdf:type owl:Class ;
+                         rdfs:subClassOf :TafkheemLetter .
+
+
+###  http://www.semantictajweed.com/ontology/PermanentTarqeeqLetter
+:PermanentTarqeeqLetter rdf:type owl:Class ;
+                        rdfs:subClassOf :TarqeeqLetter .
+
+
+###  http://www.semantictajweed.com/ontology/QalqalahLetter
+:QalqalahLetter rdf:type owl:Class ;
+                rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/QalqalahRule
+:QalqalahRule rdf:type owl:Class ;
+              rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/QamariLetter
+:QamariLetter rdf:type owl:Class ;
+              rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/Rule
+:Rule rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/RuleOccurrence
+:RuleOccurrence rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/RuleState
+:RuleState rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/SecondaryMedd
+:SecondaryMedd rdf:type owl:Class ;
+               rdfs:subClassOf :MeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/ShamsiLetter
+:ShamsiLetter rdf:type owl:Class ;
+              rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/SilentLetter
+:SilentLetter rdf:type owl:Class ;
+              rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/SixHarakahLetter
+:SixHarakahLetter rdf:type owl:Class ;
+                  rdfs:subClassOf :DisjointedLetter .
+
+
+###  http://www.semantictajweed.com/ontology/SpecificArticulationPoint
+:SpecificArticulationPoint rdf:type owl:Class ;
+                           rdfs:subClassOf :ArticulationPoint .
+
+
+###  http://www.semantictajweed.com/ontology/StoppingRule
+:StoppingRule rdf:type owl:Class ;
+              rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/StrongCharacteristic
+:StrongCharacteristic rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Characteristic
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :hasCharacteristicType ;
+                                                                   owl:hasValue :TheStrongCharacteristics
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] .
+
+
+###  http://www.semantictajweed.com/ontology/SukoonOnStopDiacritic
+:SukoonOnStopDiacritic rdf:type owl:Class ;
+                       rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/TafkheemLetter
+:TafkheemLetter rdf:type owl:Class ;
+                rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/TafkheemRule
+:TafkheemRule rdf:type owl:Class ;
+              rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/TakhfeemPermanentRule
+:TakhfeemPermanentRule rdf:type owl:Class ;
+                       rdfs:subClassOf :TafkheemRule .
+
+
+###  http://www.semantictajweed.com/ontology/TakhfeemTemporaryRule
+:TakhfeemTemporaryRule rdf:type owl:Class ;
+                       rdfs:subClassOf :TafkheemRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tanween
+:Tanween rdf:type owl:Class ;
+         rdfs:subClassOf :Diacritic .
+
+
+###  http://www.semantictajweed.com/ontology/TarqeeqLetter
+:TarqeeqLetter rdf:type owl:Class ;
+               rdfs:subClassOf :Letter .
+
+
+###  http://www.semantictajweed.com/ontology/TarqeeqRule
+:TarqeeqRule rdf:type owl:Class ;
+             rdfs:subClassOf :Rule .
+
+
+###  http://www.semantictajweed.com/ontology/TemporaryTafkheemLetter
+:TemporaryTafkheemLetter rdf:type owl:Class ;
+                         rdfs:subClassOf :TafkheemLetter .
+
+
+###  http://www.semantictajweed.com/ontology/TemporaryTarqeeqLetter
+:TemporaryTarqeeqLetter rdf:type owl:Class ;
+                        rdfs:subClassOf :TarqeeqLetter .
+
+
+###  http://www.semantictajweed.com/ontology/TwoHarakahLetter
+:TwoHarakahLetter rdf:type owl:Class ;
+                  rdfs:subClassOf :DisjointedLetter .
+
+
+###  http://www.semantictajweed.com/ontology/TypeOfCharacteristic
+:TypeOfCharacteristic rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/Verse
+:Verse rdf:type owl:Class .
+
+
+###  http://www.semantictajweed.com/ontology/WeakCharacteristic
+:WeakCharacteristic rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :Characteristic
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :hasCharacteristicType ;
+                                                                 owl:hasValue :TheWeakCharacteristics
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] .
+
+
+###  http://www.semantictajweed.com/ontology/Word
+:Word rdf:type owl:Class ;
+      rdfs:subClassOf :LexicalEntity ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasLetter ;
+                        owl:someValuesFrom :Letter
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :involvesLetter ;
+                        owl:someValuesFrom :Letter
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :involvesLetter ;
+                        owl:someValuesFrom :MeddLetter
+                      ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semantictajweed.com/ontology/Aain
+:Aain rdf:type owl:NamedIndividual ,
+               :IzharLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :QamariLetter ,
+               :SixHarakahLetter ;
+      :hasArticulationPoint :ArticulationPointT2 ;
+      rdfs:label "ع" .
+
+
+###  http://www.semantictajweed.com/ontology/Alif
+:Alif rdf:type owl:NamedIndividual ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :MeddLetter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :QamariLetter ,
+               :SilentLetter ,
+               :TemporaryTafkheemLetter ,
+               :TemporaryTarqeeqLetter ;
+      :hasArticulationPoint :ArticulationPointE1 ;
+      rdfs:label "ا" .
+
+
+###  http://www.semantictajweed.com/ontology/AlifMaksura
+:AlifMaksura rdf:type owl:NamedIndividual ,
+                      :Letter ,
+                      :NonGhunnahLetter ,
+                      :NonHaaYaaLetter ,
+                      :SilentLetter ,
+                      :TemporaryTafkheemLetter ;
+             rdfs:label "ى" .
+
+
+###  http://www.semantictajweed.com/ontology/AlifMeddah
+:AlifMeddah rdf:type owl:NamedIndividual ,
+                     :HamzaLetter ,
+                     :Letter ,
+                     :NonGhunnahLetter ,
+                     :NonHaaYaaLetter ;
+            rdfs:label "آ" .
+
+
+###  http://www.semantictajweed.com/ontology/AlifWasl
+:AlifWasl rdf:type owl:NamedIndividual ,
+                   :Letter ,
+                   :NonGhunnahLetter ,
+                   :NonHaaYaaLetter ;
+          rdfs:label "ٱ" .
+
+
+###  http://www.semantictajweed.com/ontology/AlifWithHamzaBelow
+:AlifWithHamzaBelow rdf:type owl:NamedIndividual ,
+                             :HamzaLetter ,
+                             :Letter ,
+                             :NonGhunnahLetter ;
+                    rdfs:label "إ" .
+
+
+###  http://www.semantictajweed.com/ontology/ApproximateArticulationPoint
+:ApproximateArticulationPoint rdf:type owl:NamedIndividual ;
+                              rdfs:label "المخرج المقدر"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/AreaOfArticulation
+:AreaOfArticulation rdf:type owl:NamedIndividual ;
+                    rdfs:label "AreaOfArticulation"@en ,
+                               "اصول مخارج"@ar ,
+                               "مخارج کى حصہ"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/ArticuationPointWow
+:ArticuationPointWow rdf:type owl:NamedIndividual ,
+                              :ArticulationPoint ;
+                     :involvesAnatomicalUnit :CircleofTheTwoLips ;
+                     rdfs:label "دونوں ہونٹوں کے ملنے سے"@ur ;
+                     rdfs:comment "The unlengthened wow is articulated by forming a circle of the two lips without thetwo lips meeting completely." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPoint
+:ArticulationPoint rdf:type owl:NamedIndividual ;
+                   rdfs:label "ArticulationPoint"@en ,
+                              "مخارج الحروف"@ar ,
+                              "مخارج کى جگہ"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointDaad
+:ArticulationPointDaad rdf:type owl:NamedIndividual ,
+                                :ArticulationPoint ;
+                       :involvesAnatomicalUnit :EdgeofTongue ,
+                                               :UpperMolarsLeftorRightorboth ;
+                       rdfs:label "جب حافۃ اللسان  بالمقابل اضراس علیا (ضواحک،طواحن،نواجذ) سے لگے"@ur ;
+                       rdfs:comment "This is the composite articulation point for the letter ض. They are articulated from one of the sides or edges of the tongue and what lies opposite to it of the upper molars left or right. It can also be articulated from both sides at the same time." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointE1
+:ArticulationPointE1 rdf:type owl:NamedIndividual ,
+                              :ArticulationPoint ;
+                     :involvesArticulationArea :EmptySpacesinMouthandThroat ;
+                     rdfs:comment "This is the articulation point for the Mad letters." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointFaa
+:ArticulationPointFaa rdf:type owl:NamedIndividual ,
+                               :ArticulationPoint ;
+                      :involvesAnatomicalUnit :InsideLowerLip ,
+                                              :TipofTwoFrontIncisors ;
+                      rdfs:label "جب ثنایا علیا کے کنارے نچلے ہونٹ کے اندرونی حصہ سے لگیں"@ur ;
+                      rdfs:comment "This is the composite articulation point for the letter ف. They are articulated between the inside of the lower lip and the tips of the two front incisors." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointKaaf
+:ArticulationPointKaaf rdf:type owl:NamedIndividual ,
+                                :ArticulationPoint ;
+                       :involvesAnatomicalUnit :DeepestPartofTongue ,
+                                               :HardPalate ;
+                       rdfs:label "اقصی اللسان بالمقابل نرم اور سخت تالو"@ur ;
+                       rdfs:comment "This is the composite articulation point for the letter ك. They are articulated from the deepest part of the tongue and what lies opposite to it of the roof of the mouth (the hard palate). The ك is under the ق a little, meaning closer to the mouth and farther from the throat than the ق" .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointLaam
+:ArticulationPointLaam rdf:type owl:NamedIndividual ,
+                                :ArticulationPoint ;
+                       :involvesAnatomicalUnit :EdgeofTongue ,
+                                               :OppositetotheGumofFirstTwoUpperPreMolars ,
+                                               :TwoUpperCanines ,
+                                               :TwoUpperFrontIncisors ,
+                                               :TwoUpperLateralIncisors ;
+                       rdfs:label "طرفاللسان مع ادنیٰ حافہ جب  اسنان علیا(ثنایا،رباعی،انیاب )اورضواحک کے مسوڑھوں سے لگے"@ur ;
+                       rdfs:comment "This is the composite articulation point for the letter ل. They are articulated from the nearest part of the sides of the tongue and the end of its tip and what lies opposite to it of the gums of the first two upper premolars, the two upper canines, the two upper lateral incisors and the two upper front incisors." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointNoon
+:ArticulationPointNoon rdf:type owl:NamedIndividual ,
+                                :ArticulationPoint ;
+                       :involvesAnatomicalUnit :OppositetotheGumofTwoTopFrontIncisors ,
+                                               :TopofTipofTongue ;
+                       rdfs:label "طرف اللسان جب ثنایا علیا کے مسوڑھوں سے لگے"@ur ;
+                       rdfs:comment "This is the composite articulation point for the letter ن. They are articulated from the tip of the tongue and what lies opposite to it of the gums of the two top front incisors, slightly beneath the articulation point for the ل." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointQaaf
+:ArticulationPointQaaf rdf:type owl:NamedIndividual ,
+                                :ArticulationPoint ;
+                       :involvesAnatomicalUnit :DeepestPartofTongue ,
+                                               :SoftPalate ;
+                       rdfs:label "اقصی اللسان بالمقابل نرم تالو"@ur ;
+                       rdfs:comment "This is the composite articulation point for the letter ق. They are articulated from the deepest part of the tongue and what lies opposite to it of the roof of the mouth (the soft palate)" .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointRaa
+:ArticulationPointRaa rdf:type owl:NamedIndividual ,
+                               :ArticulationPoint ;
+                      :involvesAnatomicalUnit :OppositetotheGumofTwoTopFrontIncisors ,
+                                              :TopofTipofTongue ;
+                      rdfs:label "طرف اللسان  مع ظھراللسان جب ثنایا علیا کے مسوڑھوں سے لگے"@ur ;
+                      rdfs:comment "This is the composite articulation point for the letter ر. This letter is articulated from the tip of the tongue with top of the tip, close to the articulation point of ن and what lies opposite to it of the gums of the two top front incisors." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointT1
+:ArticulationPointT1 rdf:type owl:NamedIndividual ,
+                              :ArticulationPoint ;
+                     :involvesAnatomicalUnit :DeepestPartofThroat ;
+                     rdfs:label "حلق کا سب سے گہرے حصے سے ادا ہوتے ہے"@ur ;
+                     rdfs:comment "This is the articulation point for the letters ء ه. It is articulated from the deepest part of the throat." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointT2
+:ArticulationPointT2 rdf:type owl:NamedIndividual ,
+                              :ArticulationPoint ;
+                     :involvesAnatomicalUnit :MiddlePartofThroat ;
+                     rdfs:label "حلق کا درمیانی حصے سے ادا ہوتے ہے"@ur ;
+                     rdfs:comment "This is the articulation point for the letters ح, ع. It is articulated from the middle part of the throat." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointT3
+:ArticulationPointT3 rdf:type owl:NamedIndividual ,
+                              :ArticulationPoint ;
+                     :involvesAnatomicalUnit :ClosestPartofThroat ;
+                     rdfs:label "حلق کا قریب ترین حصے سے ادا ہوتے ہے"@ur ;
+                     rdfs:comment "This is the articulation point for the letters خ,غ. It is articulated from the closest part of the throat." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointTipofTongue
+:ArticulationPointTipofTongue rdf:type owl:NamedIndividual ,
+                                       :ArticulationPoint ;
+                              :involvesAnatomicalUnit :BetweenTwoTopIncisors ,
+                                                      :SlightlyAboveLowerIncisors ,
+                                                      :TipofTongue ;
+                              rdfs:label "طرف اللسان جب ثنایا سفلیٰ کےاندرونی کناروں سے لگے"@ur ;
+                              rdfs:comment "This is the composite articulation point for the letters ز, س, ص. They are articulated between Tip of the tongue and between the plates of two top incisors and slightly above lower incisors." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointTipofTongueandBottomEdges
+:ArticulationPointTipofTongueandBottomEdges rdf:type owl:NamedIndividual ,
+                                                     :ArticulationPoint ;
+                                            :involvesAnatomicalUnit :BottomEdgesofTwoUpperIncisors ,
+                                                                    :TipofTongue ;
+                                            rdfs:label "طرف اللسان جب ثنایا علیا کے کناروں سے لگے"@ur ;
+                                            rdfs:comment "This is the composite articulation point for the letters ث, ذ, ظ. These three letters are articulated from between the Tip of the tongue, from the top side of the tip and bottom edges of the two top incisors." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointofMiddlePartofTongue
+:ArticulationPointofMiddlePartofTongue rdf:type owl:NamedIndividual ,
+                                                :ArticulationPoint ;
+                                       :involvesAnatomicalUnit :MiddlePartofTongue ,
+                                                               :UpperPalate ;
+                                       rdfs:label "وسط اللسان بالمقابل اوپرکاتالو سے لگے"@ur ;
+                                       rdfs:comment """This is the articulation point for the letters ي ش. It is articulated from the middle part of the tongue and opposite top palate
+.""" .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointofTopoftheTongue
+:ArticulationPointofTopoftheTongue rdf:type owl:NamedIndividual ,
+                                            :ArticulationPoint ;
+                                   :involvesAnatomicalUnit :GumLineofUpperTwoIncisors ,
+                                                           :TopofTipofTongue ;
+                                   rdfs:label "طرف اللسان جب  ثنایا علیا کی جڑسےلگے"@ur ;
+                                   rdfs:comment "This is the composite articulation point for letter ط, ت,د . They are articulated from Gum line of front two top incisors and Top of the tongue." .
+
+
+###  http://www.semantictajweed.com/ontology/ArticulationPointofTwoLips
+:ArticulationPointofTwoLips rdf:type owl:NamedIndividual ,
+                                     :ArticulationPoint ;
+                            :involvesAnatomicalUnit :ClosingTwoLips ;
+                            rdfs:label "دونوں ہونٹوں کو ملانے سے ادا ہوتا ہے"@ur ;
+                            rdfs:comment "This is the composite articulation point for the letters. letter involves articulation area nose for its complete pronounciation" .
+
+
+###  http://www.semantictajweed.com/ontology/Baa
+:Baa rdf:type owl:NamedIndividual ,
+              :IdghaamMutajanisainLetter ,
+              :IkhfaShafawiLetter ,
+              :IqlabLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTarqeeqLetter ,
+              :QalqalahLetter ,
+              :QamariLetter ;
+     :belongsToGroup :HaroofAshshafawiya ;
+     :hasArticulationPoint :ArticulationPointofTwoLips ;
+     :isSimilarTo :Meem ;
+     rdfs:label "ب"@ar ,
+                "ب" .
+
+
+###  http://www.semantictajweed.com/ontology/BasicCharacteristic
+:BasicCharacteristic rdf:type owl:NamedIndividual ;
+                     rdfs:label "الصفات الاصلية"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/BetweenTwoTopIncisors
+:BetweenTwoTopIncisors rdf:type owl:NamedIndividual ,
+                                :AnatomicalUnit ;
+                       :isPartOf :Teeth ;
+                       rdfs:label "Between Two Top Incisors"@en ,
+                                  "سامنے کے دو دانتوں  کے درمیان"@ur ,
+                                  "من صغحتى الثنايا العليا"@ar ;
+                       owl:sameAs "http://dbpedia.org/resource/Incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/BottomEdgesofTwoUpperIncisors
+:BottomEdgesofTwoUpperIncisors rdf:type owl:NamedIndividual ,
+                                        :AnatomicalUnit ;
+                               :isPartOf :Teeth ;
+                               rdfs:label "Bottom Edges of Two Top Incisors"@en ,
+                                          "أطراف الثنايا العليا أى رؤوسها"@ar ,
+                                          "سامنے کے دو دانتوں کا نیچے والا کنارہ"@ur ;
+                               owl:sameAs "http://dbpedia.org/resource/Incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/Chapter
+:Chapter rdf:type owl:NamedIndividual ;
+         rdfs:label "Chapter"@en ,
+                    "سورة‎"@ar ;
+         rdfs:seeAlso "http://dbpedia.org/resource/Surah" .
+
+
+###  http://www.semantictajweed.com/ontology/Characteristic
+:Characteristic rdf:type owl:NamedIndividual ;
+                rdfs:label "Characteristic"@en ,
+                           "صفات"@ur ,
+                           "صفات الحرف"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/CharacteristicsWithOpposite
+:CharacteristicsWithOpposite rdf:type owl:NamedIndividual ;
+                             rdfs:label "صفات ذوات الاضدا"@ar ,
+                                        "صفات متضادہ"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/CharacteristicsWithoutOpposite
+:CharacteristicsWithoutOpposite rdf:type owl:NamedIndividual ;
+                                rdfs:label "صفات غیرمتضادہ"@ur ,
+                                           "صفات لا اضداد لها"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/CircleofTheTwoLips
+:CircleofTheTwoLips rdf:type owl:NamedIndividual ,
+                             :AnatomicalUnit ;
+                    :involvesAnatomicalUnit :TwoLips ;
+                    rdfs:label "دونوں ہونٹوں کے گولائی  سے"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/ClosestPartofThroat
+:ClosestPartofThroat rdf:type owl:NamedIndividual ,
+                              :AnatomicalUnit ;
+                     :isPartOf :Throat ;
+                     :hasExplaination "It means closest to the mouth. From here two letters emerge." ;
+                     rdfs:label "Closest Part of Throat"@en ,
+                                "ادنى الحلق"@ar ,
+                                "حلق کا قریب ترین حصہ"@ur ;
+                     rdfs:comment "It means closest to the mouth. From here two letters emerge."@en ,
+                                  "اس کا مطلب منہ کے قریب ہے۔ یہاں سے دو حروف نکلتے ہیں۔"@ur ;
+                     owl:sameAs "http://dbpedia.org/resource/Throat" .
+
+
+###  http://www.semantictajweed.com/ontology/ClosingTwoLips
+:ClosingTwoLips rdf:type owl:NamedIndividual ,
+                         :AnatomicalUnit ;
+                :isPartOf :TwoLips ;
+                rdfs:label "Closing Two Lips"@en ,
+                           "بين الشفتين معا بانطباقهما"@ar ,
+                           "دونوں ہونٹوں کے ملنے سے"@ur ;
+                owl:sameAs "http://dbpedia.org/resource/Lip" .
+
+
+###  http://www.semantictajweed.com/ontology/ConditionalCharacteristic
+:ConditionalCharacteristic rdf:type owl:NamedIndividual ;
+                           rdfs:label "الصفات العرضية"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/Continuation
+:Continuation rdf:type owl:NamedIndividual ,
+                       :RuleState .
+
+
+###  http://www.semantictajweed.com/ontology/Daad
+:Daad rdf:type owl:NamedIndividual ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTafkheemLetter ,
+               :ShamsiLetter ;
+      :hasArticulationPoint :ArticulationPointDaad ;
+      rdfs:label "ض" .
+
+
+###  http://www.semantictajweed.com/ontology/Daal
+:Daal rdf:type owl:NamedIndividual ,
+               :IdghaamMutajanisainLetter ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :QalqalahLetter ,
+               :ShamsiLetter ;
+      :belongsToGroup :HaroofeNatiyya ;
+      :hasArticulationPoint :ArticulationPointofTopoftheTongue ;
+      :isSimilarTo :Taa ;
+      rdfs:label "د" .
+
+
+###  http://www.semantictajweed.com/ontology/DaggerAlif
+:DaggerAlif rdf:type owl:NamedIndividual ,
+                     :Diacritic ;
+            rdfs:label "ٰ" .
+
+
+###  http://www.semantictajweed.com/ontology/Damma
+:Damma rdf:type owl:NamedIndividual ,
+                :BasicHarakaat ,
+                :DammaDammatain ,
+                :Diacritic ,
+                :FathaDamma ,
+                :FathainDammain ,
+                :NotKasra ,
+                :SukoonOnStopDiacritic ;
+       rdfs:label "ُ" .
+
+
+###  http://www.semantictajweed.com/ontology/Dammatain
+:Dammatain rdf:type owl:NamedIndividual ,
+                    :DammaDammatain ,
+                    :Diacritic ,
+                    :FathainDammain ,
+                    :NotKasra ,
+                    :SukoonOnStopDiacritic ,
+                    :Tanween ;
+           rdfs:label "ٌ" .
+
+
+###  http://www.semantictajweed.com/ontology/DeepestPartofThroat
+:DeepestPartofThroat rdf:type owl:NamedIndividual ,
+                              :AnatomicalUnit ;
+                     :isPartOf :Throat ;
+                     :hasExplaination "It is farthest from the mouth and closest to the chest. From here two letters are articulated." ;
+                     rdfs:label "Deepest Part of Throat"@en ,
+                                "اقصى الحلق"@ar ,
+                                "حلق کا سب سے گہرا حصہ"@ur ;
+                     rdfs:comment "It is farthest from the mouth and closest to the chest. From here two letters are articulated."@en ,
+                                  "یہ منہ سے سب سے دور اور سینے کے قریب ہے۔ یہاں سے دو حروف نکلتے ہیں۔"@ur ;
+                     owl:sameAs "http://dbpedia.org/resource/Throat" .
+
+
+###  http://www.semantictajweed.com/ontology/DeepestPartofTongue
+:DeepestPartofTongue rdf:type owl:NamedIndividual ,
+                              :AnatomicalUnit ;
+                     :isPartOf :Tongue ;
+                     :hasSheikhAlJazareeReference "أدناه غينٌ خاؤها والقافُ  أقصى اللسانِ فوق ثم الكافُ أسفل" ;
+                     rdfs:label "Deepest Part of Tongue"@en ,
+                                "اقصى اللسان"@ar ,
+                                "زبان کی جڑ  یا آخری حصہ"@ur ;
+                     owl:sameAs "http://dbpedia.org/resource/Tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/DisjointedLetter
+:DisjointedLetter rdf:type owl:NamedIndividual ;
+                  rdfs:label "The Huroof Muqata’aat" .
+
+
+###  http://www.semantictajweed.com/ontology/EdgeofTongue
+:EdgeofTongue rdf:type owl:NamedIndividual ,
+                       :AnatomicalUnit ;
+              :isPartOf :Tongue ;
+              :hasSheikhAlJazareeReference "والضاد من حافته إذ وَلِيَا  لاضراسَ من أيسرَ أو يمناها واللام أدناها لمنتهاها" ;
+              rdfs:label "Edge of Tongue"@en ,
+                         "حافۃ اللسان"@ar ,
+                         "زبان کے دائیں بائیں کنارے"@ur ;
+              owl:sameAs "http://dbpedia.org/resource/Tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/EmptyCentreHighStop
+:EmptyCentreHighStop rdf:type owl:NamedIndividual ,
+                              :Diacritic ;
+                     rdfs:label "۫" .
+
+
+###  http://www.semantictajweed.com/ontology/EmptyCentreLowStop
+:EmptyCentreLowStop rdf:type owl:NamedIndividual ,
+                             :Diacritic ;
+                    rdfs:label "۪" .
+
+
+###  http://www.semantictajweed.com/ontology/EmptySpacesinMouthandThroat
+:EmptySpacesinMouthandThroat rdf:type owl:NamedIndividual ,
+                                      :AreaOfArticulation ;
+                             :hasExplaination "It has one articulation point for the three lengthened letters." ;
+                             :hasSheikhAlJazareeReference """مخارج الحروف سبعةَ عشر
+            على الذي يختاره من اختبر
+            
+            فألف الجوف وأختاها وهِيْ
+            حروفُ مد للهواء تنتهِي""" ;
+                             rdfs:label "Empty Spaces in Mouth and Throat"@en ,
+                                        "الجوف"@ar ,
+                                        "منہ اورحلق کے اندر کا خالی حصہ"@ur ;
+                             rdfs:comment "It has one articulation point for the three lengthened letters."@en ,
+                                          "اس مخرج سے تين حروف ادا ہوتے ہیں"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/Faa
+:Faa rdf:type owl:NamedIndividual ,
+              :IkhfaLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTarqeeqLetter ,
+              :QamariLetter ;
+     :belongsToGroup :HaroofAshshafawiya ;
+     :hasArticulationPoint :ArticulationPointFaa ;
+     rdfs:label "ف" .
+
+
+###  http://www.semantictajweed.com/ontology/Fatha
+:Fatha rdf:type owl:NamedIndividual ,
+                :BasicHarakaat ,
+                :Diacritic ,
+                :FathaDamma ,
+                :FathaFathatain ,
+                :FathaKasra ,
+                :FathainDammain ,
+                :NotKasra ,
+                :SukoonOnStopDiacritic ;
+       rdfs:label "َ" .
+
+
+###  http://www.semantictajweed.com/ontology/Fathatain
+:Fathatain rdf:type owl:NamedIndividual ,
+                    :Diacritic ,
+                    :FathaFathatain ,
+                    :FathainDammain ,
+                    :NotKasra ,
+                    :Tanween ;
+           rdfs:label "ً" .
+
+
+###  http://www.semantictajweed.com/ontology/Ghain
+:Ghain rdf:type owl:NamedIndividual ,
+                :IzharLetter ,
+                :IzharShafawiLetter ,
+                :Letter ,
+                :NonGhunnahLetter ,
+                :NonHaaYaaLetter ,
+                :PermanentTafkheemLetter ,
+                :QamariLetter ;
+       :hasArticulationPoint :ArticulationPointT3 ;
+       rdfs:label "غ" .
+
+
+###  http://www.semantictajweed.com/ontology/Ghunnah-Complete
+:Ghunnah-Complete rdf:type owl:NamedIndividual ,
+                           :GhunnahRule .
+
+
+###  http://www.semantictajweed.com/ontology/GreaterQalqalah
+:GreaterQalqalah rdf:type owl:NamedIndividual ,
+                          :QalqalahRule .
+
+
+###  http://www.semantictajweed.com/ontology/GumLineofUpperTwoIncisors
+:GumLineofUpperTwoIncisors rdf:type owl:NamedIndividual ,
+                                    :AnatomicalUnit ;
+                           :isPartOf :Teeth ;
+                           rdfs:label "Gum Line of Front Two Teeth"@en ,
+                                      "أصول الثنايا العليا"@ar ,
+                                      "ثنایا علیا کی جڑسےلگے"@ur ;
+                           owl:sameAs "http://dbpedia.org/resource/Maxillary_central_incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/Haa
+:Haa rdf:type owl:NamedIndividual ,
+              :IzharLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTarqeeqLetter ,
+              :QamariLetter ,
+              :TwoHarakahLetter ;
+     :hasArticulationPoint :ArticulationPointT2 ;
+     rdfs:label "ح" .
+
+
+###  http://www.semantictajweed.com/ontology/Hamza
+:Hamza rdf:type owl:NamedIndividual ,
+                :HamzaLetter ,
+                :IzharLetter ,
+                :IzharShafawiLetter ,
+                :Letter ,
+                :NonGhunnahLetter ,
+                :NonHaaYaaLetter ,
+                :QamariLetter ;
+       :hasArticulationPoint :ArticulationPointT1 ;
+       rdfs:label "ء" .
+
+
+###  http://www.semantictajweed.com/ontology/HamzahAlWasal
+:HamzahAlWasal rdf:type owl:NamedIndividual ,
+                        :HamzatulwasalRule .
+
+
+###  http://www.semantictajweed.com/ontology/HardPalate
+:HardPalate rdf:type owl:NamedIndividual ,
+                     :AnatomicalUnit ;
+            :isPartOf :Palate ;
+            rdfs:label "Hard Palate"@en ,
+                       "المنطقة القاسيه"@ar ,
+                       "سخت تالو"@ur ;
+            owl:sameAs "http://dbpedia.org/resource/Hard_palate" .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofAshshafawiya
+:HaroofAshshafawiya rdf:type owl:NamedIndividual ,
+                             :GroupOfLetters ;
+                    :hasExplaination "In this group letter meem is articulated by closing the two lips together. The letter ba'is articulated by closig the two lips together, but a stronger closing than the meem." ;
+                    rdfs:label "Haroof Ash shafawiya"@en ,
+                               "الحروف الشفويه"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeLahawiyyayn
+:HaroofeLahawiyyayn rdf:type owl:NamedIndividual ,
+                             :GroupOfLetters ;
+                    :hasExplaination "This group is named so because their articulations point is close to the deepest part of tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeLathawiyya
+:HaroofeLathawiyya rdf:type owl:NamedIndividual ,
+                            :GroupOfLetters ;
+                   :hasExplaination "This group is named so because their articulations point is somewhat close to the gums" ;
+                   rdfs:label "Haroof e Lathawiyya"@en ,
+                              "الحروف اللثويه"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeMadeeya
+:HaroofeMadeeya rdf:type owl:NamedIndividual ,
+                         :GroupOfLetters ;
+                :hasExplaination "This group is named so because their articulations point is emitted from empty spaces of mouth and throat. This group is also known as Haroof e Jofia or Haroof e Haweya" .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeNatiyya
+:HaroofeNatiyya rdf:type owl:NamedIndividual ,
+                         :GroupOfLetters ;
+                :hasExplaination "This group is named so due to their articulation position close to the two elevated area above the gum" ;
+                rdfs:label "Haroof e Natiyya"@en ,
+                           "الحروف النطعيه"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeSaafir
+:HaroofeSaafir rdf:type owl:NamedIndividual ,
+                        :GroupOfLetters ;
+               :hasExplaination "This group is named so due to their emerging from the tip of the tongue." ;
+               rdfs:label "Haroof e Saafir"@en ,
+                          "الحروف الصفير- الاسلية"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeShajariya
+:HaroofeShajariya rdf:type owl:NamedIndividual ,
+                           :GroupOfLetters ;
+                  :hasExplaination "This group is named so because they are articulated from the center of the mouth, or the middle of the mouth" ;
+                  rdfs:label "Haroof e Shajariya"@en ,
+                             "الحروف الشجرية"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/HaroofeThalqeeyah
+:HaroofeThalqeeyah rdf:type owl:NamedIndividual ,
+                            :GroupOfLetters ;
+                   :hasExplaination "This group is named so because their articulations point is emitted from tip of tongue" ;
+                   rdfs:label "Haroof e Althalqeeyah"@en ;
+                   rdfs:comment "الحروف الزلقية"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/HighHamza
+:HighHamza rdf:type owl:NamedIndividual ,
+                    :HamzaLetter ,
+                    :Letter ,
+                    :NonGhunnahLetter ;
+           rdfs:label "ٔ" .
+
+
+###  http://www.semantictajweed.com/ontology/HighHamzaAlif
+:HighHamzaAlif rdf:type owl:NamedIndividual ,
+                        :HamzaLetter ,
+                        :Letter ,
+                        :NonGhunnahLetter ;
+               rdfs:label "أ" .
+
+
+###  http://www.semantictajweed.com/ontology/HighHamzaWow
+:HighHamzaWow rdf:type owl:NamedIndividual ,
+                       :HamzaLetter ,
+                       :Letter ,
+                       :NonGhunnahLetter ;
+              rdfs:label "ؤ" .
+
+
+###  http://www.semantictajweed.com/ontology/HighHamzaYaa
+:HighHamzaYaa rdf:type owl:NamedIndividual ,
+                       :HamzaLetter ,
+                       :Letter ,
+                       :NonGhunnahLetter ;
+              rdfs:label "ئ" .
+
+
+###  http://www.semantictajweed.com/ontology/Idghaam-Mutabaidaan
+:Idghaam-Mutabaidaan rdf:type owl:NamedIndividual ,
+                              :IdghaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/Idghaam-Mutajanisaan
+:Idghaam-Mutajanisaan rdf:type owl:NamedIndividual ,
+                               :IdghaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/Idghaam-Mutamasilaan
+:Idghaam-Mutamasilaan rdf:type owl:NamedIndividual ,
+                               :IdghaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/Idghaam-Mutaqaribaan
+:Idghaam-Mutaqaribaan rdf:type owl:NamedIndividual ,
+                               :IdghaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamAshShafawi
+:IdghaamAshShafawi rdf:type owl:NamedIndividual ,
+                            :MeemSakinahRule .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamWithGhunnah
+:IdghaamWithGhunnah rdf:type owl:NamedIndividual ,
+                             :GhunnahRule ,
+                             :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamWithGhunnah-Complete
+:IdghaamWithGhunnah-Complete rdf:type owl:NamedIndividual ,
+                                      :CompleteIdghaamRule ,
+                                      :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamWithGhunnah-InComplete
+:IdghaamWithGhunnah-InComplete rdf:type owl:NamedIndividual ,
+                                        :IncompleteIdghaamRule ,
+                                        :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/IdghaamWithoutGhunnah
+:IdghaamWithoutGhunnah rdf:type owl:NamedIndividual ,
+                                :CompleteIdghaamRule ,
+                                :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/Ikhfa
+:Ikhfa rdf:type owl:NamedIndividual ,
+                :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/IkhfaAshShafawi
+:IkhfaAshShafawi rdf:type owl:NamedIndividual ,
+                          :MeemSakinahRule .
+
+
+###  http://www.semantictajweed.com/ontology/IncompleteGhunnah
+:IncompleteGhunnah rdf:type owl:NamedIndividual ,
+                            :GhunnahRule .
+
+
+###  http://www.semantictajweed.com/ontology/InsideLowerLip
+:InsideLowerLip rdf:type owl:NamedIndividual ,
+                         :AnatomicalUnit ;
+                :isPartOf :TwoLips ;
+                rdfs:label "Inside Lower Lip"@en ,
+                           "باطن الشفة السفلى"@ar ,
+                           "نیچے والے ہونٹ کے اندر"@ur ;
+                owl:sameAs "http://dbpedia.org/resource/Lip" .
+
+
+###  http://www.semantictajweed.com/ontology/Iqlab
+:Iqlab rdf:type owl:NamedIndividual ,
+                :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/Izhar
+:Izhar rdf:type owl:NamedIndividual ,
+                :NoonSakinahAndTanweenRule .
+
+
+###  http://www.semantictajweed.com/ontology/Jeem
+:Jeem rdf:type owl:NamedIndividual ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :QalqalahLetter ,
+               :QamariLetter ;
+      :belongsToGroup :HaroofeShajariya ;
+      :hasArticulationPoint :ArticulationPointofMiddlePartofTongue ;
+      rdfs:label "ج" .
+
+
+###  http://www.semantictajweed.com/ontology/Kaaf
+:Kaaf rdf:type owl:NamedIndividual ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :QamariLetter ,
+               :SixHarakahLetter ;
+      :belongsToGroup :HaroofeLahawiyyayn ;
+      :hasArticulationPoint :ArticulationPointKaaf ;
+      rdfs:label "ك" .
+
+
+###  http://www.semantictajweed.com/ontology/Kasra
+:Kasra rdf:type owl:NamedIndividual ,
+                :BasicHarakaat ,
+                :Diacritic ,
+                :FathaKasra ,
+                :KasraKasratain ,
+                :SukoonOnStopDiacritic ;
+       rdfs:label "ِ" .
+
+
+###  http://www.semantictajweed.com/ontology/Kasratain
+:Kasratain rdf:type owl:NamedIndividual ,
+                    :KasraKasratain ,
+                    :SukoonOnStopDiacritic ,
+                    :Tanween ;
+           rdfs:label "ٍ" .
+
+
+###  http://www.semantictajweed.com/ontology/Khaa
+:Khaa rdf:type owl:NamedIndividual ,
+               :IzharLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTafkheemLetter ,
+               :QamariLetter ;
+      :hasArticulationPoint :ArticulationPointT3 ;
+      rdfs:label "خ" .
+
+
+###  http://www.semantictajweed.com/ontology/Laam
+:Laam rdf:type owl:NamedIndividual ,
+               :IdghaamWithoutGhunnahLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :ShamsiLetter ,
+               :SixHarakahLetter ,
+               :TemporaryTafkheemLetter ,
+               :TemporaryTarqeeqLetter ;
+      :belongsToGroup :HaroofeThalqeeyah ;
+      :hasArticulationPoint :ArticulationPointLaam ;
+      :isCloseTo :Raa ;
+      rdfs:label "ل" .
+
+
+###  http://www.semantictajweed.com/ontology/LaamAlQamari
+:LaamAlQamari rdf:type owl:NamedIndividual ,
+                       :LaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/LaamAshShamsi
+:LaamAshShamsi rdf:type owl:NamedIndividual ,
+                        :LaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/LaamJalalah
+:LaamJalalah rdf:type owl:NamedIndividual ,
+                      :LaamRule .
+
+
+###  http://www.semantictajweed.com/ontology/Leen-Wow
+:Leen-Wow rdf:type owl:NamedIndividual ,
+                   :NaturalLeenRule .
+
+
+###  http://www.semantictajweed.com/ontology/Leen-Yaa
+:Leen-Yaa rdf:type owl:NamedIndividual ,
+                   :NaturalLeenRule .
+
+
+###  http://www.semantictajweed.com/ontology/LesserQalqalah
+:LesserQalqalah rdf:type owl:NamedIndividual ,
+                         :QalqalahRule .
+
+
+###  http://www.semantictajweed.com/ontology/Letter
+:Letter rdf:type owl:NamedIndividual ;
+        rdfs:label "Letter"@en ,
+                   """حرف 
+(plural:الحروف)"""@ur ;
+        rdfs:seeAlso "http://dbpedia.org/page/Arabic_alphabet"^^xsd:anyURI .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-Alif
+:Medd-Alif rdf:type owl:NamedIndividual ,
+                    :NaturalMeddPrimary ,
+                    :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-DaggerAlif
+:Medd-DaggerAlif rdf:type owl:NamedIndividual ,
+                          :NaturalMeddDerived ,
+                          :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-Wow
+:Medd-Wow rdf:type owl:NamedIndividual ,
+                   :NaturalMeddPrimary ,
+                   :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-Wow-SmallWow
+:Medd-Wow-SmallWow rdf:type owl:NamedIndividual ,
+                            :NaturalMeddDerived ,
+                            :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-Yaa
+:Medd-Yaa rdf:type owl:NamedIndividual ,
+                   :NaturalMeddPrimary ,
+                   :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-Yaa-SmallHighYaa
+:Medd-Yaa-SmallHighYaa rdf:type owl:NamedIndividual ,
+                                :NaturalMeddDerived .
+
+
+###  http://www.semantictajweed.com/ontology/Medd-Yaa-SmallYaa
+:Medd-Yaa-SmallYaa rdf:type owl:NamedIndividual ,
+                            :NaturalMeddDerived ,
+                            :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAlAridSukoon
+:MeddAlAridSukoon rdf:type owl:NamedIndividual ,
+                           :MeddOnStoppingRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAlEwad
+:MeddAlEwad rdf:type owl:NamedIndividual ,
+                     :MeddOnStoppingRule ,
+                     :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAsSila
+:MeddAsSila rdf:type owl:NamedIndividual ,
+                     :MeddSilaRule ,
+                     :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAsSila-SmallWow
+:MeddAsSila-SmallWow rdf:type owl:NamedIndividual ,
+                              :MeddSilaRule ,
+                              :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAsSila-SmallYaa
+:MeddAsSila-SmallYaa rdf:type owl:NamedIndividual ,
+                              :MeddSilaRule ,
+                              :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAsSilaKubra
+:MeddAsSilaKubra rdf:type owl:NamedIndividual ,
+                          :MeddSilaRule ,
+                          :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAsSilaWowKubra
+:MeddAsSilaWowKubra rdf:type owl:NamedIndividual ,
+                             :MeddSilaRule ,
+                             :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddAsSilaYaaKubra
+:MeddAsSilaYaaKubra rdf:type owl:NamedIndividual ,
+                             :MeddSilaRule ,
+                             :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLaazimKalmiM
+:MeddLaazimKalmiM rdf:type owl:NamedIndividual ,
+                           :MeddLaazim .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLaazimKalmiMK
+:MeddLaazimKalmiMK rdf:type owl:NamedIndividual ,
+                            :MeddLaazim .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLazim
+:MeddLazim rdf:type owl:NamedIndividual ,
+                    :MeddLaazim .
+
+
+###  http://www.semantictajweed.com/ontology/MeddLetter
+:MeddLetter rdf:type owl:NamedIndividual ;
+            rdfs:label "حروف_المد"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/MeddMunfasil
+:MeddMunfasil rdf:type owl:NamedIndividual ,
+                       :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddMunfasil-Derived
+:MeddMunfasil-Derived rdf:type owl:NamedIndividual ,
+                               :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddMunfasil-Primary
+:MeddMunfasil-Primary rdf:type owl:NamedIndividual ,
+                               :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddMuttasil
+:MeddMuttasil rdf:type owl:NamedIndividual ,
+                       :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddMuttasil-Derived
+:MeddMuttasil-Derived rdf:type owl:NamedIndividual ,
+                               :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddMuttasil-Primary
+:MeddMuttasil-Primary rdf:type owl:NamedIndividual ,
+                               :SecondaryMedd .
+
+
+###  http://www.semantictajweed.com/ontology/MeddWowLeen
+:MeddWowLeen rdf:type owl:NamedIndividual ,
+                      :MeddLeen ,
+                      :MeddOnStoppingRule .
+
+
+###  http://www.semantictajweed.com/ontology/MeddYaaLeen
+:MeddYaaLeen rdf:type owl:NamedIndividual ,
+                      :MeddLeen ,
+                      :MeddOnStoppingRule .
+
+
+###  http://www.semantictajweed.com/ontology/Meddah
+:Meddah rdf:type owl:NamedIndividual ,
+                 :Diacritic ,
+                 :MeddDiacritic ,
+                 :NonBasicDiacritic ;
+        rdfs:label "ٓ" .
+
+
+###  http://www.semantictajweed.com/ontology/Meem
+:Meem rdf:type owl:NamedIndividual ,
+               :CompleteIdghaamWithGhunnahLetter ,
+               :GhunnahLetter ,
+               :IdghaamMutajanisainLetter ,
+               :IdghaamShafawiLetter ,
+               :IdghaamWithGhunnahLetter ,
+               :Letter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :QamariLetter ,
+               :SixHarakahLetter ;
+      :belongsToGroup :HaroofAshshafawiya ;
+      :hasArticulationPoint :ArticulationPointofTwoLips ;
+      :involvesArticulationArea :Nose ;
+      rdfs:label "م" .
+
+
+###  http://www.semantictajweed.com/ontology/MiddlePartofThroat
+:MiddlePartofThroat rdf:type owl:NamedIndividual ,
+                             :AnatomicalUnit ;
+                    :isPartOf :Throat ;
+                    :hasExplaination "From this part of  the throat two other letters emerge" ;
+                    rdfs:label "Middle Part of Throat"@en ,
+                               "حلق کا درمیانی حصہ"@ur ,
+                               "وسط الحلق"@ar ;
+                    owl:sameAs "http://dbpedia.org/resource/Throat" .
+
+
+###  http://www.semantictajweed.com/ontology/MiddlePartofTongue
+:MiddlePartofTongue rdf:type owl:NamedIndividual ,
+                             :AnatomicalUnit ;
+                    :isPartOf :Tongue ;
+                    :hasSheikhAlJazareeReference "والوسط فجيمُ الشين يا" ;
+                    rdfs:label "Middle Part of Tongue"@en ,
+                               "وسط اللسان"@ar ,
+                               "وسط اللسان"@ur ;
+                    owl:sameAs "http://dbpedia.org/resource/Tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/Mouth
+:Mouth rdf:type owl:NamedIndividual ,
+                :AreaOfArticulation ;
+       :hasExplaination "It is further divided into twolips, tongue, roof of the mouth (upper palates). 22 different letters are pronounced from the different parts of the mouth." ;
+       rdfs:label "Mouth"@en ,
+                  "الفم"@ar ,
+                  "منہ"@ur ;
+       owl:sameAs "http://dbpedia.org/resource/Human_mouth" .
+
+
+###  http://www.semantictajweed.com/ontology/Nabr-HamzaSukun
+:Nabr-HamzaSukun rdf:type owl:NamedIndividual ,
+                          :NabrRule .
+
+
+###  http://www.semantictajweed.com/ontology/Nabr-Medd
+:Nabr-Medd rdf:type owl:NamedIndividual ,
+                    :NabrRule .
+
+
+###  http://www.semantictajweed.com/ontology/Nabr-StopShadd
+:Nabr-StopShadd rdf:type owl:NamedIndividual ,
+                         :NabrRule .
+
+
+###  http://www.semantictajweed.com/ontology/Nabr-WowShadd
+:Nabr-WowShadd rdf:type owl:NamedIndividual ,
+                        :NabrRule .
+
+
+###  http://www.semantictajweed.com/ontology/Nabr-YaaShadd
+:Nabr-YaaShadd rdf:type owl:NamedIndividual ,
+                        :NabrRule .
+
+
+###  http://www.semantictajweed.com/ontology/NoDiacritic
+:NoDiacritic rdf:type owl:NamedIndividual ,
+                      :BasicHarakaat ,
+                      :Diacritic ,
+                      :MeddDiacritic ,
+                      :NonBasicDiacritic ,
+                      :NonPronouncedDiacritic .
+
+
+###  http://www.semantictajweed.com/ontology/Noon
+:Noon rdf:type owl:NamedIndividual ,
+               :CompleteIdghaamWithGhunnahLetter ,
+               :GhunnahLetter ,
+               :IdghaamWithGhunnahLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :ShamsiLetter ,
+               :SixHarakahLetter ;
+      :belongsToGroup :HaroofeThalqeeyah ;
+      :hasArticulationPoint :ArticulationPointNoon ;
+      :involvesArticulationArea :Nose ;
+      rdfs:label "ن" .
+
+
+###  http://www.semantictajweed.com/ontology/Nose
+:Nose rdf:type owl:NamedIndividual ,
+               :AreaOfArticulation ;
+      :hasExplaination "From the hole of nose towards the inside of the mouth, here there is one articulation point, that of the ghunnah" ;
+      :hasSheikhAlJazareeReference "وغنَّة مخرجها الخيشوم" ;
+      rdfs:label "Nose"@en ,
+                 "الخيشوم"@ar ,
+                 "ناک کا اندرونی حصہ"@ur ;
+      owl:sameAs "http://dbpedia.org/resource/Human_nose" .
+
+
+###  http://www.semantictajweed.com/ontology/OppositetotheGumofFirstTwoUpperPreMolars
+:OppositetotheGumofFirstTwoUpperPreMolars rdf:type owl:NamedIndividual ,
+                                                   :AnatomicalUnit ;
+                                          :isPartOf :Teeth ;
+                                          rdfs:label "Opposite to the Gums of First Two Upper PreMolars"@en ,
+                                                     "اوپر والی دو ڈاڑھو کے مسوڑھوں کے مخالف"@ur ,
+                                                     "ما يحاذيه من لثة الضاحكين العلويتين"@ar ;
+                                          owl:sameAs "http://dbpedia.org/resource/Molar_(tooth)" .
+
+
+###  http://www.semantictajweed.com/ontology/OppositetotheGumofTwoTopFrontIncisors
+:OppositetotheGumofTwoTopFrontIncisors rdf:type owl:NamedIndividual ,
+                                                :AnatomicalUnit ;
+                                       :isPartOf :Teeth ;
+                                       rdfs:label "Opposite to the Gumsof Two Top Front Incisors"@en ,
+                                                  "سامنے کے دو دانتوں کے مسوڑوں کے مخالف"@ur ,
+                                                  "ما يحاذيه من لثة الثنيتين العلويتين"@ar ;
+                                       owl:sameAs "http://dbpedia.org/resource/Incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/OriginalMedd
+:OriginalMedd rdf:type owl:NamedIndividual ,
+                       :NaturalMeddRule .
+
+
+###  http://www.semantictajweed.com/ontology/Palate
+:Palate rdf:type owl:NamedIndividual ,
+                 :AnatomicalUnit ;
+        :isPartOf :Mouth ;
+        rdfs:label "Palate"@en ,
+                   "الحنک"@ar ,
+                   "اوپر کے تالو"@ur ;
+        owl:sameAs "http://dbpedia.org/resource/Palate" .
+
+
+###  http://www.semantictajweed.com/ontology/Qaaf
+:Qaaf rdf:type owl:NamedIndividual ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTafkheemLetter ,
+               :QalqalahLetter ,
+               :QamariLetter ,
+               :SixHarakahLetter ;
+      :belongsToGroup :HaroofeLahawiyyayn ;
+      :hasArticulationPoint :ArticulationPointQaaf ;
+      :isCloseTo :Kaaf ;
+      rdfs:label "ق" .
+
+
+###  http://www.semantictajweed.com/ontology/Qalqalah
+:Qalqalah rdf:type owl:NamedIndividual ,
+                   :QalqalahRule .
+
+
+###  http://www.semantictajweed.com/ontology/Raa
+:Raa rdf:type owl:NamedIndividual ,
+              :IdghaamWithoutGhunnahLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :ShamsiLetter ,
+              :TemporaryTafkheemLetter ,
+              :TemporaryTarqeeqLetter ,
+              :TwoHarakahLetter ;
+     :belongsToGroup :HaroofeThalqeeyah ;
+     :hasArticulationPoint :ArticulationPointRaa ;
+     rdfs:label "ر" .
+
+
+###  http://www.semantictajweed.com/ontology/RoundHaa
+:RoundHaa rdf:type owl:NamedIndividual ,
+                   :IzharLetter ,
+                   :IzharShafawiLetter ,
+                   :Letter ,
+                   :NonGhunnahLetter ,
+                   :PermanentTarqeeqLetter ,
+                   :QamariLetter ,
+                   :TwoHarakahLetter ;
+          :hasArticulationPoint :ArticulationPointT1 ;
+          rdfs:label "ه" .
+
+
+###  http://www.semantictajweed.com/ontology/RoundedHighStop
+:RoundedHighStop rdf:type owl:NamedIndividual ,
+                          :Diacritic ,
+                          :NonBasicDiacritic ;
+                 rdfs:label "۬" .
+
+
+###  http://www.semantictajweed.com/ontology/Saad
+:Saad rdf:type owl:NamedIndividual ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTafkheemLetter ,
+               :ShamsiLetter ,
+               :SixHarakahLetter ;
+      :belongsToGroup :HaroofeSaafir ;
+      :hasArticulationPoint :ArticulationPointTipofTongue ;
+      rdfs:label "ص" .
+
+
+###  http://www.semantictajweed.com/ontology/Seen
+:Seen rdf:type owl:NamedIndividual ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :ShamsiLetter ,
+               :SixHarakahLetter ;
+      :belongsToGroup :HaroofeSaafir ;
+      :hasArticulationPoint :ArticulationPointTipofTongue ;
+      rdfs:label "س" .
+
+
+###  http://www.semantictajweed.com/ontology/Shadda
+:Shadda rdf:type owl:NamedIndividual ,
+                 :Diacritic ;
+        rdfs:label "ّ" .
+
+
+###  http://www.semantictajweed.com/ontology/Sheen
+:Sheen rdf:type owl:NamedIndividual ,
+                :IkhfaLetter ,
+                :IzharShafawiLetter ,
+                :Letter ,
+                :NonGhunnahLetter ,
+                :NonHaaYaaLetter ,
+                :PermanentTarqeeqLetter ,
+                :ShamsiLetter ;
+       :belongsToGroup :HaroofeShajariya ;
+       :hasArticulationPoint :ArticulationPointofMiddlePartofTongue ;
+       rdfs:label "ش" .
+
+
+###  http://www.semantictajweed.com/ontology/SlightlyAboveLowerIncisors
+:SlightlyAboveLowerIncisors rdf:type owl:NamedIndividual ,
+                                     :AnatomicalUnit ;
+                            :isPartOf :Teeth ;
+                            rdfs:label "Slightly Above Lower Incisors"@en ,
+                                       "فويق السفلى"@ar ,
+                                       "نیچے والے دانتوں سے تھوڑا سا اوپر" ;
+                            owl:sameAs "http://dbpedia.org/resource/Incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallHighMeem
+:SmallHighMeem rdf:type owl:NamedIndividual ,
+                        :Diacritic ;
+               rdfs:label "ۢ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallHighNoon
+:SmallHighNoon rdf:type owl:NamedIndividual ,
+                        :Diacritic ;
+               rdfs:label "ۨ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallHighRoundedZero
+:SmallHighRoundedZero rdf:type owl:NamedIndividual ,
+                               :Diacritic ,
+                               :NonBasicDiacritic ;
+                      rdfs:label "۟" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallHighSeen
+:SmallHighSeen rdf:type owl:NamedIndividual ,
+                        :Diacritic ;
+               rdfs:label "ۜ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallHighUprightRectangularZero
+:SmallHighUprightRectangularZero rdf:type owl:NamedIndividual ,
+                                          :Diacritic ,
+                                          :NonBasicDiacritic ;
+                                 rdfs:label "۠" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallHighYaa
+:SmallHighYaa rdf:type owl:NamedIndividual ,
+                       :Diacritic ;
+              rdfs:label "ۧ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallLowMeem
+:SmallLowMeem rdf:type owl:NamedIndividual ,
+                       :Diacritic ;
+              rdfs:label "ۭ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallLowSeen
+:SmallLowSeen rdf:type owl:NamedIndividual ,
+                       :Diacritic ;
+              rdfs:label "ۣ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallWow
+:SmallWow rdf:type owl:NamedIndividual ,
+                   :Diacritic ;
+          rdfs:label "ۥ" .
+
+
+###  http://www.semantictajweed.com/ontology/SmallYaa
+:SmallYaa rdf:type owl:NamedIndividual ,
+                   :Diacritic ;
+          rdfs:label "ۦ" .
+
+
+###  http://www.semantictajweed.com/ontology/SoftPalate
+:SoftPalate rdf:type owl:NamedIndividual ,
+                     :AnatomicalUnit ;
+            :isPartOf :Palate ;
+            rdfs:label "Soft Palate"@en ,
+                       "المنطقة الرخوة"@ar ,
+                       "نرم تالو"@ur ;
+            owl:sameAs "http://dbpedia.org/resource/Soft_palate" .
+
+
+###  http://www.semantictajweed.com/ontology/Softness
+:Softness rdf:type owl:NamedIndividual ,
+                   :CharacteristicsWithoutOpposite ;
+          :hasCharacteristicType :TheWeakCharacteristics ;
+          :hasAppliedTajweedDefinition "Emitting the letter from its articulation point with ease without effort from the tongue." ;
+          :hasLinguisticDefinition "Easiness" ;
+          rdfs:label "Softness"@en ,
+                     "اللين"@ar ,
+                     "نرم ہونا"@ur ;
+          rdfs:comment "Emitting the letter from its articulation point with ease without effort from the tongue."@en ,
+                       "نرمی اور آسانی سے ادا ہونا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/SpecificArticulationPoint
+:SpecificArticulationPoint rdf:type owl:NamedIndividual ;
+                           rdfs:label "المخرج المحقق"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/Stopping
+:Stopping rdf:type owl:NamedIndividual ,
+                   :RuleState .
+
+
+###  http://www.semantictajweed.com/ontology/Sukun
+:Sukun rdf:type owl:NamedIndividual ,
+                :Diacritic ,
+                :NonPronouncedDiacritic ,
+                :NotKasra ;
+       rdfs:label "ْ" .
+
+
+###  http://www.semantictajweed.com/ontology/Taa
+:Taa rdf:type owl:NamedIndividual ,
+              :IdghaamMutajanisainLetter ,
+              :IkhfaLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTarqeeqLetter ,
+              :ShamsiLetter ;
+     :belongsToGroup :HaroofeNatiyya ;
+     :hasArticulationPoint :ArticulationPointofTopoftheTongue ;
+     :isSimilarTo :Daal ,
+                  :Toa ;
+     rdfs:label "ت" .
+
+
+###  http://www.semantictajweed.com/ontology/TaaMarbuta
+:TaaMarbuta rdf:type owl:NamedIndividual ,
+                     :Letter ,
+                     :NonGhunnahLetter ,
+                     :NonHaaYaaLetter ,
+                     :PermanentTarqeeqLetter ;
+            rdfs:label "ة" .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem
+:Tafkheem rdf:type owl:NamedIndividual ,
+                   :TafkheemRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem-Alif
+:Tafkheem-Alif rdf:type owl:NamedIndividual ,
+                        :TakhfeemTemporaryRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem-Highest
+:Tafkheem-Highest rdf:type owl:NamedIndividual ,
+                           :TafkheemRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem-Laam-Jalalah
+:Tafkheem-Laam-Jalalah rdf:type owl:NamedIndividual ,
+                                :TakhfeemTemporaryRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem-Lowest
+:Tafkheem-Lowest rdf:type owl:NamedIndividual ,
+                          :TafkheemRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem-Middle
+:Tafkheem-Middle rdf:type owl:NamedIndividual ,
+                          :TafkheemRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tafkheem-Raa
+:Tafkheem-Raa rdf:type owl:NamedIndividual ,
+                       :TakhfeemTemporaryRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tarqeeq-Alif
+:Tarqeeq-Alif rdf:type owl:NamedIndividual ,
+                       :TarqeeqRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tarqeeq-Laam
+:Tarqeeq-Laam rdf:type owl:NamedIndividual ,
+                       :TarqeeqRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tarqeeq-Raa
+:Tarqeeq-Raa rdf:type owl:NamedIndividual ,
+                      :TarqeeqRule .
+
+
+###  http://www.semantictajweed.com/ontology/Tatweel
+:Tatweel rdf:type owl:NamedIndividual ,
+                  :Diacritic ;
+         rdfs:label "ـ" .
+
+
+###  http://www.semantictajweed.com/ontology/Teeth
+:Teeth rdf:type owl:NamedIndividual ,
+                :AnatomicalUnit ;
+       :isPartOf :Mouth ;
+       rdfs:label "Teeth"@en ,
+                  "الاسنان"@ar ,
+                  "دانت"@ur ;
+       owl:sameAs "http://dbpedia.org/resource/Human_tooth" .
+
+
+###  http://www.semantictajweed.com/ontology/Thaa
+:Thaa rdf:type owl:NamedIndividual ,
+               :IdghaamMutajanisainLetter ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :ShamsiLetter ;
+      :belongsToGroup :HaroofeLathawiyya ;
+      :hasArticulationPoint :ArticulationPointTipofTongueandBottomEdges ;
+      :isSimilarTo :Zaal ;
+      rdfs:label "ث" .
+
+
+###  http://www.semantictajweed.com/ontology/TheAdhesioned
+:TheAdhesioned rdf:type owl:NamedIndividual ,
+                        :CharacteristicsWithOpposite ;
+               :hasCharacteristicType :TheStrongCharacteristics ;
+               :isCharacteristicOf :Daad ,
+                                   :Saad ,
+                                   :Toa ,
+                                   :Zoa ;
+               :isOppositeOf :TheOpened ;
+               :hasAppliedTajweedDefinition "The compression of the sound of the \"الاطباق\" letter between the tongue and roof of the mouth." ;
+               :hasLinguisticDefinition "Adhering" ;
+               rdfs:label "Adhesioned"@en ,
+                          "اطباق"@ur ,
+                          "الاطباق"@ar ;
+               rdfs:comment "(زبان کا تالوکوڈھانپنا (2 گنا تفخیم"@ur ,
+                            "The compression of the sound of the \"الاطباق\" letter between the tongue and roof of the mouth." .
+
+
+###  http://www.semantictajweed.com/ontology/TheApparent
+:TheApparent rdf:type owl:NamedIndividual ,
+                      :CharacteristicsWithOpposite ;
+             :hasCharacteristicType :TheStrongCharacteristics ;
+             :isCharacteristicOf :Aain ,
+                                 :Alif ,
+                                 :Baa ,
+                                 :Daad ,
+                                 :Daal ,
+                                 :Ghain ,
+                                 :Hamza ,
+                                 :Jeem ,
+                                 :Laam ,
+                                 :Meem ,
+                                 :Noon ,
+                                 :Qaaf ,
+                                 :Raa ,
+                                 :Toa ,
+                                 :Wow ,
+                                 :Yaa ,
+                                 :Zaa ,
+                                 :Zaal ,
+                                 :Zoa ;
+             :isOppositeOf :TheWhisper ;
+             :hasAppliedTajweedDefinition "Imprisonment of the flowing of breath when pronouncing a letter due to its strength which originated from relying on the letter at its articulation point" ;
+             :hasLinguisticDefinition "Apparent" ;
+             rdfs:label "Apparent"@en ,
+                        "الجهر"@ar ,
+                        "جہر"@ur ;
+             rdfs:comment "Imprisonment of the flowing of breath when pronouncing a letter due to its strength which originated from relying on the letter at its articulation point"@en ,
+                          "آواز کا بند ہونا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheDrifting
+:TheDrifting rdf:type owl:NamedIndividual ,
+                      :CharacteristicsWithoutOpposite ;
+             :hasCharacteristicType :TheStrongCharacteristics ;
+             :isCharacteristicOf :Laam ,
+                                 :Raa ;
+             :hasAppliedTajweedDefinition "Drifting of the sound of the letter due to the incomplete running caused  by the tongue from its path." ;
+             :hasLinguisticDefinition "Drifting" ;
+             rdfs:label "Drifting"@en ,
+                        "الأنحراف"@ar ,
+                        "لَوٹنا"@ur ;
+             rdfs:comment "Drifting of the sound of the letter due to the incomplete running caused  by the tongue from its path."@en ,
+                          "زبان کے کنارے کا ایک  دوسرے کے مخرج کی طرف لوٹنا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheElevated
+:TheElevated rdf:type owl:NamedIndividual ,
+                      :CharacteristicsWithOpposite ;
+             :hasCharacteristicType :TheStrongCharacteristics ;
+             :isCharacteristicOf :Daad ,
+                                 :Ghain ,
+                                 :Khaa ,
+                                 :Qaaf ,
+                                 :Saad ,
+                                 :Toa ,
+                                 :Zoa ;
+             :isOppositeOf :TheLowered ;
+             :hasAppliedTajweedDefinition "Directing pressure of the letter to the roof of the mouth due to an elevation of the deepest part of the tongue when pronouncing an \"elevated\" letter [letter from this group]" ;
+             :hasLinguisticDefinition "Elevation" ;
+             rdfs:label "Elevated"@en ,
+                        "استعلاء"@ur ,
+                        "الاستعلاء"@ar ;
+             rdfs:comment "(اقصی اللسان کا بلند ہونا (تفخیم"@ur ,
+                          "Directing pressure of the letter to the roof of the mouth due to an elevation of the deepest part of the tongue when pronouncing an \"elevated\" letter [letter from this group]"@en .
+
+
+###  http://www.semantictajweed.com/ontology/TheInBetween
+:TheInBetween rdf:type owl:NamedIndividual ,
+                       :CharacteristicsWithOpposite ;
+              :hasCharacteristicType :TheMiddleCharacteristics ;
+              :isCharacteristicOf :Aain ,
+                                  :Laam ,
+                                  :Meem ,
+                                  :Noon ,
+                                  :Raa ;
+              :partiallyInvolves :TheSoftness ,
+                                 :TheStrength ;
+              :hasAppliedTajweedDefinition "The letter is in between the two characteristics; between strength and softness so that the sound is partially imprisoned and partially running when pronouncing the letter" ;
+              :hasLinguisticDefinition "Moderation" ;
+              rdfs:label "InBetween"@en ,
+                         "التوسط"@ar ,
+                         "توسط"@ur ;
+              rdfs:comment "The letter is in between the two characteristics; between strength and softness so that the sound is partially imprisoned and partially running when pronouncing the letter"@en ,
+                           "درمیانی حالت"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheLengthening
+:TheLengthening rdf:type owl:NamedIndividual ,
+                         :CharacteristicsWithoutOpposite ;
+                :hasCharacteristicType :TheStrongCharacteristics ;
+                :isCharacteristicOf :Daad ;
+                :hasAppliedTajweedDefinition "Its is the pushing of the tongue forward after it collides at its articulation point , and this is due to the influence the compression of sound on it (the tongue), untill the tip of the tongue lightly touches the gum line of the two front incisors." ;
+                :hasLinguisticDefinition "Lengthening" ;
+                rdfs:label "Lengthening"@en ,
+                           "الأستطالة"@ar ,
+                           "لمبا،دراز کرنا"@ur ;
+                rdfs:comment "Its is the pushing of the tongue forward after it collides at its articulation point , and this is due to the influence the compression of sound on it (the tongue), untill the tip of the tongue lightly touches the gum line of the two front incisors."@en ,
+                             "مخرج میں آواز کا دراز ہونا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheLowered
+:TheLowered rdf:type owl:NamedIndividual ,
+                     :CharacteristicsWithOpposite ;
+            :hasCharacteristicType :TheWeakCharacteristics ;
+            :isCharacteristicOf :Aain ,
+                                :Alif ,
+                                :Baa ,
+                                :Daal ,
+                                :Faa ,
+                                :Haa ,
+                                :Hamza ,
+                                :Jeem ,
+                                :Kaaf ,
+                                :Laam ,
+                                :Meem ,
+                                :Noon ,
+                                :Raa ,
+                                :RoundHaa ,
+                                :Seen ,
+                                :Sheen ,
+                                :Taa ,
+                                :Thaa ,
+                                :Wow ,
+                                :Yaa ,
+                                :Zaa ,
+                                :Zaal ;
+            :hasAppliedTajweedDefinition "The absence of pressuring the letter to the roof of the mouth due to the lack of raising the deepest part of the tongue when pronouncing a \"lowered\" letter [letter from this group]." ;
+            :hasLinguisticDefinition "Dropping or Lowering" ;
+            rdfs:label "Lowered"@en ,
+                       "استفال"@ur ,
+                       "الاستفال"@ar ;
+            rdfs:comment "The absence of pressuring the letter to the roof of the mouth due to the lack of raising the deepest part of the tongue when pronouncing a \"lowered\" letter [letter from this group]."@en ,
+                         "اقصی اللسان کا نیچے رہنا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheMiddleCharacteristics
+:TheMiddleCharacteristics rdf:type owl:NamedIndividual ,
+                                   :TypeOfCharacteristic ;
+                          :hasExplaination "التوسط" ;
+                          rdfs:label "Middle Characteristics"@en ,
+                                     "الصفات المتوسطة"@ar ,
+                                     "متواسط خصوصیات"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheNasalization
+:TheNasalization rdf:type owl:NamedIndividual ,
+                          :CharacteristicsWithoutOpposite ;
+                 :hasCharacteristicType :TheStrongCharacteristics ;
+                 :isCharacteristicOf :Meem ,
+                                     :Noon ;
+                 :hasAppliedTajweedDefinition "This is a required or intrinsic characteristic of the \"م\" and \"ن\" and cannot be separated from these two letters." ;
+                 :hasLinguisticDefinition "A nasal sound that is emitted from the nose." ;
+                 rdfs:label "Nasalization"@en ,
+                            "الغنة"@ar ,
+                            "گنگناہٹ"@ur ;
+                 rdfs:comment "A nasal sound that is emitted from the nose."@en ,
+                              "نیزل کی آواز جو ناک سے خارج ہوتی ہے۔"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheOpened
+:TheOpened rdf:type owl:NamedIndividual ,
+                    :CharacteristicsWithOpposite ;
+           :hasCharacteristicType :TheWeakCharacteristics ;
+           :isCharacteristicOf :Aain ,
+                               :Alif ,
+                               :Baa ,
+                               :Daal ,
+                               :Faa ,
+                               :Ghain ,
+                               :Haa ,
+                               :Hamza ,
+                               :Jeem ,
+                               :Kaaf ,
+                               :Khaa ,
+                               :Laam ,
+                               :Meem ,
+                               :Noon ,
+                               :Qaaf ,
+                               :Raa ,
+                               :RoundHaa ,
+                               :Seen ,
+                               :Sheen ,
+                               :Taa ,
+                               :Thaa ,
+                               :Wow ,
+                               :Yaa ,
+                               :Zaa ,
+                               :Zaal ;
+           :hasLinguisticDefinition "Separation" ,
+                                    "The absence of compression of the sound of the letter of \"الانفتاح\" between the tongue and the roof of the mouth." ;
+           rdfs:label "Opened"@en ,
+                      "الانفتاح"@ar ,
+                      "انفتاح"@ur ;
+           rdfs:comment "The absence of compression of the sound of the letter of \"الانفتاح\" between the tongue and the roof of the mouth."@en ,
+                        "زبان کا کھلا رہنا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheRepetition
+:TheRepetition rdf:type owl:NamedIndividual ,
+                        :CharacteristicsWithoutOpposite ;
+               :hasCharacteristicType :TheStrongCharacteristics ;
+               :isCharacteristicOf :Raa ;
+               :hasAppliedTajweedDefinition "The light trilling of the tongue when pronouncing the \"ر\" due to its tight articulation point. The reciter should be careful not to exaggerate the repition leading to the occurrence of more than one of the letter \"ر\"" ;
+               :hasLinguisticDefinition "Repetition of something once or more." ;
+               rdfs:label "Repetition"@en ,
+                          "التكرار"@ar ,
+                          "بار بار ہونا"@ur ;
+               rdfs:comment "The light trilling of the tongue when pronouncing the \"ر\" due to its tight articulation point. The reciter should be careful not to exaggerate the repition leading to the occurrence of more than one of the letter \"ر\""@en ,
+                            "آواز میں کپکپی پیدا ہونا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheSoftness
+:TheSoftness rdf:type owl:NamedIndividual ,
+                      :CharacteristicsWithOpposite ;
+             :hasCharacteristicType :TheWeakCharacteristics ;
+             :isCharacteristicOf :Alif ,
+                                 :Daad ,
+                                 :Faa ,
+                                 :Ghain ,
+                                 :Haa ,
+                                 :Khaa ,
+                                 :RoundHaa ,
+                                 :Saad ,
+                                 :Seen ,
+                                 :Sheen ,
+                                 :Thaa ,
+                                 :Yaa ,
+                                 :Zaa ,
+                                 :Zaal ,
+                                 :Zoa ;
+             :hasAppliedTajweedDefinition "Running on of the sound with the letter due to weakness in reliance on the articulation point" ;
+             :hasLinguisticDefinition "Softness" ;
+             rdfs:label "Softness"@en ,
+                        "الرخاوة"@ar ,
+                        "رخوت"@ur ;
+             rdfs:comment "Running on of the sound with the letter due to weakness in reliance on the articulation point"@en ,
+                          "آواز کا جاری ہونا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheSpreadingAround
+:TheSpreadingAround rdf:type owl:NamedIndividual ,
+                             :CharacteristicsWithoutOpposite ;
+                    :hasCharacteristicType :TheStrongCharacteristics ;
+                    :isCharacteristicOf :Sheen ;
+                    :hasAppliedTajweedDefinition "Spreading the sound of the letter \"ش\" starting from its articulation point untill its collides with the inner plates of the top teeth." ;
+                    :hasLinguisticDefinition "Spreading around" ;
+                    rdfs:label "Spreading Around"@en ,
+                               "التفشى"@ar ,
+                               "پھیلنا"@ur ;
+                    rdfs:comment "Spreading the sound of the letter \"ش\" starting from its articulation point untill its collides with the inner plates of the top teeth."@en ,
+                                 "مخرج میں آواز کا پھیلنا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheStrength
+:TheStrength rdf:type owl:NamedIndividual ,
+                      :CharacteristicsWithOpposite ;
+             :hasCharacteristicType :TheStrongCharacteristics ;
+             :isCharacteristicOf :Baa ,
+                                 :Daal ,
+                                 :Hamza ,
+                                 :Jeem ,
+                                 :Kaaf ,
+                                 :Qaaf ,
+                                 :Taa ,
+                                 :Toa ;
+             :isOppositeOf :TheSoftness ;
+             :hasAppliedTajweedDefinition "Imprisonment of the running of the sound when pronouncing a letter due to complete reliance on the articulation point" ;
+             :hasLinguisticDefinition "Strength" ;
+             rdfs:label "Strength"@en ,
+                        "االشدة"@ar ,
+                        "شدت"@ur ;
+             rdfs:comment "Imprisonment of the running of the sound when pronouncing a letter due to complete reliance on the articulation point"@en ,
+                          "صوتی نقطہ پر مکمل انحصار کی وجہ سے خط کا اعلان کرتے وقت آواز کو چلانے پر قید"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheStrongCharacteristics
+:TheStrongCharacteristics rdf:type owl:NamedIndividual ,
+                                   :TypeOfCharacteristic ;
+                          :hasExplaination "الاطباق, الجهر, استعلاء, االشدة, الأنحراف, الأستطالة, التكرار, التفشى, الصفير" ;
+                          rdfs:label "Strong Characteristics"@en ,
+                                     "الصفات القوية"@ar ,
+                                     "قوي خصوصیات"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheWeakCharacteristics
+:TheWeakCharacteristics rdf:type owl:NamedIndividual ,
+                                 :TypeOfCharacteristic ;
+                        :hasExplaination "استفال, الانفتاح, الرخاوة, الهمس, اللين" ;
+                        rdfs:label "الصفات الضعيفة"@ar ,
+                                   "ضعيف خصوصیات"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheWhisper
+:TheWhisper rdf:type owl:NamedIndividual ,
+                     :CharacteristicsWithOpposite ;
+            :hasCharacteristicType :TheWeakCharacteristics ;
+            :isCharacteristicOf :Faa ,
+                                :Haa ,
+                                :Kaaf ,
+                                :Khaa ,
+                                :RoundHaa ,
+                                :Saad ,
+                                :Seen ,
+                                :Sheen ,
+                                :Taa ,
+                                :Thaa ;
+            :hasAppliedTajweedDefinition "Running on of breath when pronouncing the letter due to its weakness in its origin, which originated from weakness of relying on the letter at its articulation point of origin." ;
+            :hasLinguisticDefinition "Concealment" ;
+            rdfs:label "Whisper"@en ,
+                       "الهمس"@ar ,
+                       "ہمس"@ur ;
+            rdfs:comment "Running on of breath when pronouncing the letter due to its weakness in its origin, which originated from weakness of relying on the letter at its articulation point of origin."@en ,
+                         "سیٹی کی طرح تیز آواز نکلنا"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/TheWhistle
+:TheWhistle rdf:type owl:NamedIndividual ,
+                     :CharacteristicsWithoutOpposite ;
+            :hasCharacteristicType :TheStrongCharacteristics ;
+            :isCharacteristicOf :Saad ,
+                                :Seen ,
+                                :Zaa ;
+            :hasAppliedTajweedDefinition "Sharpness in the sound of the letter produced from it transversing through a tight passage." ;
+            :hasLinguisticDefinition "Sharpness of sound" ;
+            rdfs:label "Whistle"@en ,
+                       "الصفير"@ar ,
+                       "سیٹی"@ur ;
+            rdfs:comment "Sharpness in the sound of the letter produced from it transversing through a tight passage."@en ,
+                         "اس سے نکانے ہونے والے خط کی آواز میں تیزی ایک سخت گزرنے سے گزر رہی ہے۔"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/Throat
+:Throat rdf:type owl:NamedIndividual ,
+                 :AreaOfArticulation ;
+        :hasExplaination "It has three articulation points for six different letters which are pronounced from the deepest, middle and closest part of the throat." ;
+        :hasSheikhAlJazareeReference """ثم لأقصى الحلق همزٌ هاءُ
+            ثم لوسْطه فعينٌ حاءُ  أدناه غينٌ خاؤها""" ;
+        rdfs:label "Throat"@en ,
+                   "الحلق"@ar ,
+                   "حلق"@ur ;
+        rdfs:comment "It has three articulation points for six different letters which are pronounced from the deepest, middle and closest part of the throat."@en ,
+                     "اس کے تین مخارج اور چھ حروف ہیں۔ جو حلق کے سب سے گہرے ، درمیانی اور قریب ترین حصے سے نکلتے ہیں"@ur ;
+        owl:sameAs "http://dbpedia.org/resource/Throat" .
+
+
+###  http://www.semantictajweed.com/ontology/TipofTongue
+:TipofTongue rdf:type owl:NamedIndividual ,
+                      :AnatomicalUnit ;
+             :isPartOf :Tongue ;
+             :hasExplaination "There are five articulation points for eleven letters" ;
+             :hasSheikhAlJazareeReference "والنون من طرفه تحت اجعلوا  والرا يدانيه لظهر أدخلوا والطاء والدال وتا منه ومِن عليا الثنايا والصفير مستكِن  منه ومن فوق الثنايا السفلى والظاء والذال وثا للعليا  من طرفيهما" ;
+             rdfs:label "Tip of Tongue"@en ,
+                        "زبان کا سامنے کا کنارہ"@ur ,
+                        "طرف اللسان"@ar ;
+             rdfs:comment "There are five articulation points for eleven letters"@en ,
+                          "اسکے پانچ مخارج ہیں اور گیارہ حروف ہیں۔"@ur ;
+             owl:sameAs "http://dbpedia.org/resource/Tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/TipofTwoFrontIncisors
+:TipofTwoFrontIncisors rdf:type owl:NamedIndividual ,
+                                :AnatomicalUnit ;
+                       :isPartOf :Teeth ;
+                       rdfs:label "Tip of Two Front Incisors"@en ,
+                                  "أطراف الثنايا العليا"@ar ,
+                                  "سامنے کے دو دانتوں کی نوک"@ur ;
+                       owl:sameAs "http://dbpedia.org/resource/Maxillary_central_incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/Toa
+:Toa rdf:type owl:NamedIndividual ,
+              :IdghaamMutajanisainLetter ,
+              :IkhfaLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTafkheemLetter ,
+              :QalqalahLetter ,
+              :ShamsiLetter ,
+              :TwoHarakahLetter ;
+     :belongsToGroup :HaroofeNatiyya ;
+     :hasArticulationPoint :ArticulationPointofTopoftheTongue ;
+     :isSimilarTo :Taa ;
+     rdfs:label "ط" .
+
+
+###  http://www.semantictajweed.com/ontology/Tongue
+:Tongue rdf:type owl:NamedIndividual ,
+                 :AnatomicalUnit ;
+        :isPartOf :Mouth ;
+        :hasExplaination "It has ten articulation points for eighteen letters." ;
+        rdfs:label "Tongue"@en ,
+                   "اللسان"@ar ,
+                   "زبان"@ur ;
+        rdfs:comment "It has ten articulation points for eighteen letters."@en ,
+                     "اسکے دس مخارج ہیں اور اٹھارہ حروف ہیں"@ur ;
+        owl:sameAs "http://dbpedia.org/resource/Tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/TopofTipofTongue
+:TopofTipofTongue rdf:type owl:NamedIndividual ,
+                           :AnatomicalUnit ;
+                  :isPartOf :Tongue ;
+                  rdfs:label "Top of Tip of Tongue"@en ,
+                             "زبان کا اوپر والا حصہ"@ur ,
+                             "طرف اللسان"@ar ;
+                  owl:sameAs "http://dbpedia.org/resource/Tongue" .
+
+
+###  http://www.semantictajweed.com/ontology/TwoLips
+:TwoLips rdf:type owl:NamedIndividual ,
+                  :AnatomicalUnit ;
+         :isPartOf :Mouth ;
+         :hasExplaination "They have two articulation points for four letters" ;
+         :hasSheikhAlJazareeReference "ومن بطن الشفه  فالفا مع اطراف الثنايا المشرفه  للشفتين الواو باء ميم" ;
+         rdfs:label "Two Lips"@en ,
+                    "الشفتین"@ar ,
+                    "دونوں ہونٹ"@ur ;
+         rdfs:comment "They have two articulation points for four letters"@en ,
+                      "اسکے دو مخارج ہیں اور چار حروف ہیں۔"@ur ;
+         owl:sameAs "http://dbpedia.org/resource/Lip" .
+
+
+###  http://www.semantictajweed.com/ontology/TwoUpperCanines
+:TwoUpperCanines rdf:type owl:NamedIndividual ,
+                          :AnatomicalUnit ;
+                 :isPartOf :Teeth ;
+                 rdfs:label "Two Upper Canines"@en ,
+                            "النابين العلويتين"@ar ,
+                            "اوپر والی دو ڈاڑھ"@ur ;
+                 owl:sameAs "http://dbpedia.org/resource/Maxillary_canine" .
+
+
+###  http://www.semantictajweed.com/ontology/TwoUpperFrontIncisors
+:TwoUpperFrontIncisors rdf:type owl:NamedIndividual ,
+                                :AnatomicalUnit ;
+                       :isPartOf :Teeth ;
+                       rdfs:label "Two Upper Front Incisors"@en ,
+                                  "الثنيتين العلويتين"@ar ,
+                                  "سامنے کے اوپر والے دو دانت"@ur ;
+                       owl:sameAs "http://dbpedia.org/resource/Maxillary_central_incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/TwoUpperLateralIncisors
+:TwoUpperLateralIncisors rdf:type owl:NamedIndividual ,
+                                  :AnatomicalUnit ;
+                         :isPartOf :Teeth ;
+                         rdfs:label "Two Upper Lateral Incisors"@en ,
+                                    "الرباعيتين العلويتين"@ar ,
+                                    "سامنے والے دو پچھلے دانت"@ur ;
+                         owl:sameAs "http://dbpedia.org/resource/Mandibular_lateral_incisor" .
+
+
+###  http://www.semantictajweed.com/ontology/TypeOfCharacteristic
+:TypeOfCharacteristic rdf:type owl:NamedIndividual ;
+                      rdfs:label "تقسم الصفات"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/UpperMolarsLeftorRightorboth
+:UpperMolarsLeftorRightorboth rdf:type owl:NamedIndividual ,
+                                       :AnatomicalUnit ;
+                              :isPartOf :Teeth ;
+                              rdfs:label "Upper Molars Left or Right or both"@en ,
+                                         "الاضراس العليا يمينا أو شمالا"@ar ,
+                                         "اوپر والی آگے یا پچھے کی ڈاڑھ"@ur ;
+                              owl:sameAs "http://dbpedia.org/resource/Molar_(tooth)" .
+
+
+###  http://www.semantictajweed.com/ontology/UpperPalate
+:UpperPalate rdf:type owl:NamedIndividual ,
+                      :AnatomicalUnit ;
+             :isPartOf :Palate ;
+             rdfs:label "Upper Palate"@en ,
+                        "الحنك العلوي"@ar ,
+                        "اوپرکاتالو"@ur .
+
+
+###  http://www.semantictajweed.com/ontology/Verse
+:Verse rdf:type owl:NamedIndividual ;
+       rdfs:label "Verse"@en ,
+                  "آية"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/Word
+:Word rdf:type owl:NamedIndividual ;
+      rdfs:label "Word"@en ,
+                 "كلمات"@ar ,
+                 "كلمة"@ar .
+
+
+###  http://www.semantictajweed.com/ontology/Wow
+:Wow rdf:type owl:NamedIndividual ,
+              :IdghaamWithGhunnahLetter ,
+              :IncompleteIdghaamWithGhunnahLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :MeddLetter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTarqeeqLetter ;
+     :belongsToGroup :HaroofAshshafawiya ;
+     :hasArticulationPoint :ArticuationPointWow ;
+     rdfs:label "و" .
+
+
+###  http://www.semantictajweed.com/ontology/Yaa
+:Yaa rdf:type owl:NamedIndividual ,
+              :IdghaamWithGhunnahLetter ,
+              :IncompleteIdghaamWithGhunnahLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :MeddLetter ,
+              :NonGhunnahLetter ,
+              :PermanentTarqeeqLetter ,
+              :QamariLetter ,
+              :TwoHarakahLetter ;
+     :belongsToGroup :HaroofeShajariya ;
+     :hasArticulationPoint :ArticulationPointofMiddlePartofTongue ;
+     rdfs:label "ي" .
+
+
+###  http://www.semantictajweed.com/ontology/Zaa
+:Zaa rdf:type owl:NamedIndividual ,
+              :IkhfaLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTarqeeqLetter ,
+              :ShamsiLetter ;
+     :belongsToGroup :HaroofeSaafir ;
+     :hasArticulationPoint :ArticulationPointTipofTongue ;
+     rdfs:label "ز" .
+
+
+###  http://www.semantictajweed.com/ontology/Zaal
+:Zaal rdf:type owl:NamedIndividual ,
+               :IdghaamMutajanisainLetter ,
+               :IkhfaLetter ,
+               :IzharShafawiLetter ,
+               :Letter ,
+               :NonGhunnahLetter ,
+               :NonHaaYaaLetter ,
+               :PermanentTarqeeqLetter ,
+               :ShamsiLetter ;
+      :belongsToGroup :HaroofeLathawiyya ;
+      :hasArticulationPoint :ArticulationPointTipofTongueandBottomEdges ;
+      :isSimilarTo :Zoa ;
+      rdfs:label "ذ" .
+
+
+###  http://www.semantictajweed.com/ontology/Zoa
+:Zoa rdf:type owl:NamedIndividual ,
+              :IdghaamMutajanisainLetter ,
+              :IkhfaLetter ,
+              :IzharShafawiLetter ,
+              :Letter ,
+              :NonGhunnahLetter ,
+              :NonHaaYaaLetter ,
+              :PermanentTafkheemLetter ,
+              :ShamsiLetter ;
+     :belongsToGroup :HaroofeLathawiyya ;
+     :hasArticulationPoint :ArticulationPointTipofTongueandBottomEdges ;
+     rdfs:label "ظ" .
+
+
+###  http://www.semantictajweed.com/ontology/endOfAyah
+:endOfAyah rdf:type owl:NamedIndividual ,
+                    :PauseMarker ;
+           rdfs:label "۝" .
+
+
+###  http://www.semantictajweed.com/ontology/hasArticulationPoint
+:hasArticulationPoint rdf:type owl:NamedIndividual ;
+                      rdfs:label "مخرج" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:ApproximateArticulationPoint rdfs:comment "It is that which does not rely on a specific place from the area of the throat, or the tongue, or the two lips. This approximate articulation point is applied to the lengthened letters that comes from the empty spaces in the mouth and throat."@en ,
+                                           "وہ مخرج ہے جس کا انحصار ،حلق ،زبان یا ہونٹوں کے کسی خاص حصہ پر نہیں ہوتا۔اس کا اطلاق منہ اور حلق کے خالی حصہ  اور خیشوم سے ہوتا ہے۔"@ur .
+
+
+:ArticulationPoint owl:sameAs "http://dbpedia.org/resource/Place_of_articulation"^^xsd:anyURI .
+
+
+:BasicCharacteristic rdfs:comment "There are eight characteristics in pair;each characteristic of the pair is opposite to the other characteristic in the pair. There are also seven singular characteristics that have no opposites. Each letter has atleast four characteristics, one of each of the pair of opposite."@en .
+
+
+:Chapter <http://purl.org/dc/terms/description> "Represent a chapter (Surah) of the Holy Quran."@en ;
+         owl:equivalentClass "http://mlode.nlp2rdf.org/quranvocab#Chapter"@en ,
+                             "http://quranontology.com/Resource/Chapter"@en ;
+         <http://www.w3.org/2004/02/skos/core#altLabel> "Surah"@en .
+
+
+:Characteristic rdfs:isDefinedBy "What serves the purpose of describing the meaning, This can be in thw way of physical descriptions such as white and black, or can be abstract descriptions such as education"@en ,
+                                 "اصطلاحی معنیٰ: وہ حالت یا کیفیت جو مخرج سے ادا ہوتے وقت حرف میں پائی جاتی ہے۔ جو اس حرف کو دوسرے حروف سے ممتاز /الگ کرتی ہے۔"@ur ,
+                                 "لفظی معنیٰ:  کیفیت یا حالت"@ur ,
+                                 "هي الكيفية العارضة للحرف عند حصوله فى المخرج والي تمي"@ar ,
+                                 "هي ما قام بالشي ء من المعاني"@ar .
+
+
+:HaroofAshshafawiya rdfs:comment " In this group letter meem is articulated by closing the two lips together. The letter ba'is articulated by closig the two lips together, but a stronger closing than the meem."@en ,
+                                 "اس گروپ میں \"م\" کو دونوں ہونٹوں کو ایک ساتھ بند کر کے بیان کیا جاتا ہے۔ حرف \"ب\" كو دونوں ہونٹوں کے ساتھ بند کر کے بیان کیا جاتا ہے ، لیکن میم سے زیادہ مضبوط بند كرتے ہيں ۔"@ur .
+
+
+:HaroofeLathawiyya rdfs:comment "اس گروپ کے حروف کے مخارج مسوڑھوں سے کچھ زیادہ قریب ہیں"@ur ,
+                                "This group is named so because their articulations point is somewhat close to the gums" .
+
+
+:HaroofeNatiyya rdfs:comment "اس گروپ کے حروف کا مخرج مسو کے اوپر والے حصہ کے قریب ہے"@ur .
+
+
+:HaroofeSaafir rdfs:comment "This group is named so due to their emerging from the tip of the tongue."@en ,
+                            "اس گروپ کے حروف کا مخرج زبان کی نوک سے ہوتا ہے۔"@ur .
+
+
+:HaroofeShajariya rdfs:comment "This group is named so because they are articulated from the center of the mouth, or the middle of the mouth"@en ,
+                               "اس گروپ کے حروف کا مخرج منہ کے بیچ یا منہ کے وسط سے منسلک ہیں"@ur .
+
+
+:MeddLetter rdfs:comment """ہر حر ف مدّ منہ یا جبڑے کی ایک مخصوص حرکت کے ساتھ ادا ہوتا ہے جیسے: الف کے لئے منہ کھولنا
+واوٴ کےلئےدونوں ہونٹوں کو گول کرنا،  یاء کے لئے جبڑے کو پیچھے کرنا"""@ur ,
+                         "حرف_المد" .
+
+
+:SpecificArticulationPoint rdfs:comment "It is that which lies on a specific place of the areas of the throat, tongue or two lips."@en ,
+                                        "وہ مخرج ہےجس کا انحصار حلق ، زبان یا ہونٹوں کے کسی خاص حصہ پر ہوتا ہے۔"@ur .
+
+
+:Verse <http://purl.org/dc/terms/description> "Verse from the Holy Qur'an."@en ;
+       owl:equivalentClass "http://mlode.nlp2rdf.org/quranvocab#Verse"@en ,
+                           "http://quranontology.com/Resource/Verse"@en ;
+       <http://www.w3.org/2004/02/skos/core#altLabel> "Ayah"@en .
+
+
+:Word <http://purl.org/dc/terms/description> """A term in a verse of the Holy Quran. A word can be composed of several parts
+For example:\"وَبِالْآخِرَةِ\" is considered as a single word"""@en ;
+      owl:equivalentClass "http://mlode.nlp2rdf.org/quranvocab#Word"@en ,
+                          "http://quranontology.com/Resource/Word"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Aain
+                        :Alif
+                        :Baa
+                        :Daad
+                        :Daal
+                        :Faa
+                        :Ghain
+                        :Haa
+                        :Hamza
+                        :Jeem
+                        :Kaaf
+                        :Khaa
+                        :Laam
+                        :Meem
+                        :Noon
+                        :Qaaf
+                        :Raa
+                        :RoundHaa
+                        :Saad
+                        :Seen
+                        :Sheen
+                        :Taa
+                        :Thaa
+                        :Toa
+                        :Wow
+                        :Yaa
+                        :Zaa
+                        :Zaal
+                        :Zoa
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :HaroofAshshafawiya
+                        :HaroofeLathawiyya
+                        :HaroofeNatiyya
+                        :HaroofeSaafir
+                        :HaroofeShajariya
+                      )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
