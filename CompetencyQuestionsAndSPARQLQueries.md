@@ -20,25 +20,6 @@ WHERE {
   FILTER (?letter = :Baa)  # Replace with any letter (e.g., :Noon)
 }
 ```
-**All instances of Rule Occurrence with subcategory showing the reasoning of why it is occurring**
-**SPARQL Query:**
-```
-PREFIX : <http://www.semantictajweed.com/ontology/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX tajweed: <http://www.semantictajweed.com/ontology/>
-
-SELECT Distinct  ?verseText ?wtext ?LO  ?rule
-WHERE {
-      ?ruleOccurrence rdf:type tajweed:RuleOccurrence .
-      ?ruleOccurrence tajweed:hasRuleType ?rule .
-      ?rule rdf:type :NabrRule.
-      ?ruleOccurrence tajweed:occursAt ?LO.
-      ?LO tajweed:isPartOfWord/:wordIndex ?wno ;
-       tajweed:isPartOfWord/tajweed:wordText ?wtext ;
-        tajweed:isPartOfWord/tajweed:isPartOfVerse ?v1 .
-    	?v1 tajweed:verseText ?verseText.
-     }
-```
      
 ### Competency Question 2:
 **Question: Does every Tajweed rule apply to at least one letter?** 
@@ -320,6 +301,15 @@ LIMIT 1
 **SPARQL Query:**
 ```
 ```
+
+<!--
+### Competency Question :
+**Question: ** 
+
+**SPARQL Query:**
+```
+```
+
 ### Competency Question :
 **Question: ** 
 
@@ -338,18 +328,6 @@ LIMIT 1
 
 **SPARQL Query:**
 ```
-```### Competency Question :
-**Question: ** 
-
-**SPARQL Query:**
-```
-```
-
-### Competency Question :
-**Question: ** 
-
-**SPARQL Query:**
-```
 ```
 ### Competency Question :
 **Question: ** 
@@ -362,4 +340,211 @@ LIMIT 1
 
 **SPARQL Query:**
 ```
+```
+-->
+
+**All instances of Rule Occurrence with subcategory showing the reasoning of why it is occurring**
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX tajweed: <http://www.semantictajweed.com/ontology/>
+
+SELECT Distinct  ?verseText ?wtext ?LO  ?rule
+WHERE {
+      ?ruleOccurrence rdf:type tajweed:RuleOccurrence .
+      ?ruleOccurrence tajweed:hasRuleType ?rule .
+      ?rule rdf:type :NabrRule.
+      ?ruleOccurrence tajweed:occursAt ?LO.
+      ?LO tajweed:isPartOfWord/:wordIndex ?wno ;
+       tajweed:isPartOfWord/tajweed:wordText ?wtext ;
+        tajweed:isPartOfWord/tajweed:isPartOfVerse ?v1 .
+    	?v1 tajweed:verseText ?verseText.
+     }
+```
+
+
+**All verses starting with a particular letter** 
+
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?ayah ?ayahText
+WHERE {
+  ?surah :hasVerse ?ayah.
+  ?ayah :hasWord/:hasLetterOccurrence ?occurrence.
+  ?occurrence :hasLetterPosition 1;
+              :involvesLetter ?letter.
+  ?letter rdfs:label ?letterLabel.
+  FILTER (STR(?letterLabel) = "ق")
+  OPTIONAL { ?ayah :verseText ?ayahText. }
+}
+```
+
+**First Letter of Every Ayah** 
+
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+
+Select * 
+{	
+    :CH112 :hasVerse ?ayah.
+    ?ayah :hasWord/:hasLetterOccurrence ?LO.
+    ?ayah :verseText ?ayahT.
+    ?LO :hasLetterPosition 1;
+    	:involvesLetter ?letter;
+    	:involvesDiacritic ?Diacritic.
+    
+    
+}
+```
+
+
+**Visualise Word-wise Rules Occurrence with contruct** 
+
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+
+CONSTRUCT {
+  ?ayah :hasWord ?word.
+  ?word :hasLetterOccurrence ?occ.
+  ?word :wordText ?wordText.
+  ?occ :involvesLetter ?letter.
+  ?occ :hasRuleType ?rule.
+  ?ayah :verseText ?ayahText.
+}
+WHERE {
+  ?ayah :hasWord ?word.
+  ?word :hasLetterOccurrence ?occ.
+  ?word :wordText ?wordText.
+  ?occ :hasRuleInstance ?RO.
+  ?RO :hasRuleType ?rule.
+  OPTIONAL { ?ayah :verseText ?ayahText. }
+  OPTIONAL { ?occ :involvesLetter ?letter. }
+  
+  FILTER (?word = :CH018_V019_W034)
+
+} 
+
+```
+
+**Rule frequency by surah** 
+
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?surah (COUNT(?rule) AS ?ruleCount)
+WHERE {
+  ?surah :hasVerse ?ayah.
+  ?ayah :hasWord ?word.
+  ?word :hasLetterOccurrence ?occ.
+  ?occ :hasRuleInstance ?RO.
+  ?RO :hasRuleType ?rule.
+  FILTER (CONTAINS(STR(?rule), "Tafkheem"))
+}
+GROUP BY ?surah 
+ORDER BY ASC(?surah)
+```
+
+**Verse with most Rule X** 
+
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?ayah ?ayahText  (COUNT(?rule) AS ?ruleCount)
+WHERE {
+  ?surah :hasVerse ?ayah.  # or remove :CH112 if you want all surahs
+  ?ayah :hasWord ?word.
+  ?word :hasLetterOccurrence ?occurrence.
+  ?occurrence :hasRuleInstance ?RO.
+  ?RO :hasRuleType ?rule.
+  FILTER (CONTAINS(STR(?rule), "Ikhfa"))
+  OPTIONAL { ?ayah :verseText ?ayahText. }
+}
+GROUP BY ?ayah ?ayahText
+ORDER BY DESC(?ruleCount)
+LIMIT 1
+```
+
+**No. of Words in each Surah** 
+
+**SPARQL Query:**
+```
+
+PREFIX : <http://www.semantictajweed.com/ontology/>
+
+SELECT ?surah (COUNT(?word) AS ?wordCount)
+WHERE {
+  ?surah :hasVerse ?ayah.
+  ?ayah :hasWord ?word.
+}
+GROUP BY ?surah
+ORDER BY ?surah
+```
+
+**count how many ayahs start with each letter** 
+
+**SPARQL Query:**
+```
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://www.semantictajweed.com/ontology/>
+
+SELECT ?letter (COUNT(DISTINCT ?ayah) AS ?ayahCount)
+WHERE {
+  ?surah :hasVerse ?ayah.
+  ?ayah :hasWord/:hasLetterOccurrence ?LO.
+  ?ayah :verseText ?ayahT.
+  ?LO :hasLetterPosition 1;
+       :involvesLetter ?letterT.
+   ?letterT rdfs:label ?letter
+}
+GROUP BY ?letter
+ORDER BY DESC(?ayahCount)
+
+```
+
+
+**h** 
+
+**SPARQL Query:**
+```
+
+```
+
+**h** 
+
+**SPARQL Query:**
+```
+
+```
+
+
+**h** 
+
+**SPARQL Query:**
+```
+
+```
+
+**h** 
+
+**SPARQL Query:**
+```
+
+```
+
+
+**h** 
+
+**SPARQL Query:**
+```
+
 ```
