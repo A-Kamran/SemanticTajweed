@@ -20,6 +20,26 @@ WHERE {
   FILTER (?letter = :Baa)  # Replace with any letter (e.g., :Noon)
 }
 ```
+**All instances of Rule Occurrence with subcategory showing the reasoning of why it is occurring**
+**SPARQL Query:**
+```
+PREFIX : <http://www.semantictajweed.com/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX tajweed: <http://www.semantictajweed.com/ontology/>
+
+SELECT Distinct  ?verseText ?wtext ?LO  ?rule
+WHERE {
+      ?ruleOccurrence rdf:type tajweed:RuleOccurrence .
+      ?ruleOccurrence tajweed:hasRuleType ?rule .
+      ?rule rdf:type :NabrRule.
+      ?ruleOccurrence tajweed:occursAt ?LO.
+      ?LO tajweed:isPartOfWord/:wordIndex ?wno ;
+       tajweed:isPartOfWord/tajweed:wordText ?wtext ;
+        tajweed:isPartOfWord/tajweed:isPartOfVerse ?v1 .
+    	?v1 tajweed:verseText ?verseText.
+     }
+```
+     
 ### Competency Question 2:
 **Question: Does every Tajweed rule apply to at least one letter?** 
 
