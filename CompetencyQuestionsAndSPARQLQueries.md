@@ -103,6 +103,7 @@ where{
 ```
 ### Competency Question 7:
 **Question: Which letters belong to Group Y?** 
+
 **SPARQL Query:**
 ```
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
